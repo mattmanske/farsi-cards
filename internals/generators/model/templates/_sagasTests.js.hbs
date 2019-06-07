@@ -1,0 +1,32 @@
+//-----------  Imports  -----------//
+
+import { call, put }          from 'redux-saga/effects'
+import { cloneableGenerator } from 'redux-saga/utils'
+
+import { {{ lowerCase name }}Actions, sagaActions } from '../actions'
+import { request{{ properCase name }}Saga }         from '../sagas'
+import { request{{ properCase name }} }             from '../api'
+
+//-----------  Definitions  -----------//
+
+const {{ lowerCase name }} = request{{ properCase name }}()
+
+//-----------  Saga Tests  -----------//
+
+describe('{{ properCase name }} Model: Requst Saga', () => {
+  const generator = cloneableGenerator(request{{ properCase name }}Saga)({{ lowerCase name }}Actions.request())
+
+  test('should request data', () => {
+    expect(generator.next().value).toEqual(call(request{{ properCase name }}))
+  })
+
+  test('and trigger a success response action', () => {
+    const clone = generator.clone()
+    expect(clone.next({{ lowerCase name }}).value).toEqual(put(sagaActions.success()))
+  })
+
+  test('and a failure response action', () => {
+    const clone = generator.clone()
+    expect(clone.throw().value).toEqual(put(sagaActions.failure()))
+  })
+})

@@ -1,0 +1,25 @@
+//-----------  Imports  -----------//
+
+import { all, put, call, takeEvery } from 'redux-saga/effects'
+
+import { request{{ titleCase name }} } from './api'
+import { {{ constantCase name }}, sagaActions } from './actions'
+
+//-----------  Sagas  -----------//
+
+export function* request{{ titleCase name }}Saga(){
+  try {
+    const { data } = yield call(request{{ titleCase name }})
+    yield put(sagaActions.success(data))
+  } catch(error){
+    yield put(sagaActions.failure(error))
+  }
+}
+
+//-----------  Watchers  -----------//
+
+export default function* {{ lowerCase name }}Sagas(){
+  yield all([
+    takeEvery({{ constantCase name }}.REQUEST, request{{ titleCase name }}Saga)
+  ])
+}

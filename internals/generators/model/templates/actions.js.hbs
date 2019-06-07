@@ -1,0 +1,20 @@
+//-----------  Imports  -----------//
+
+import { createActionConstants } from 'utilities/sagas'
+
+//-----------  Definitions  -----------//
+
+export const {{ constantCase name }} = createActionConstants('{{ constantCase name }}')
+
+//-----------  {{ titleCase name }} Actions  -----------//
+
+export const {{ lowerCase name }}Actions = {
+  request: () => ({ type: {{ constantCase name }}.REQUEST }),
+}
+
+//-----------  Saga Actions  -----------//
+
+export const sagaActions = {
+  success: (data) => ({ type: {{ constantCase name }}.SUCCESS, data }),
+  failure: (error) => ({ type: {{ constantCase name }}.FAILURE, error }),
+}

@@ -1,0 +1,14 @@
+//-----------  Imports  -----------//
+
+import { {{ constantCase name }}, {{ lowerCase name }}Actions } from '../actions'
+
+//-----------  Actions Tests  -----------//
+
+describe('{{ properCase name }} Model: Actions', () => {
+  it('should create an request action', () => {
+    const action   = {{ lowerCase name }}Actions.request()
+    const expected = { type: {{ constantCase name }}.REQUEST }
+
+    expect(action).toEqual(expected)
+  })
+})

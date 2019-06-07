@@ -1,0 +1,22 @@
+//-----------  Imports  -----------//
+
+import { {{ constantCase name }} } from '../actions'
+import {{ lowerCase name }}Reducer, { initialState } from '../reducer'
+
+//-----------  Reducer Tests  -----------//
+
+describe('{{ properCase name }} Model: Reducer', () => {
+  it('should return the initial state', () => {
+    const action   = {{ lowerCase name }}Reducer(undefined, {})
+    const expected = initialState
+
+    expect(action).toEqual(expected)
+  })
+
+  it('should handle a request action', () => {
+    const action   = {{ lowerCase name }}Reducer(undefined, { type: {{ constantCase name }}.REQUEST })
+    const expected = { ...initialState, isLoading: true }
+
+    expect(action).toEqual(expected)
+  })
+})

@@ -1,0 +1,37 @@
+//-----------  Imports  -----------//
+
+import Styled    from './styles'
+
+import React     from 'react'
+import PropTypes from 'prop-types'
+
+import Elements  from 'components/PageElements'
+
+//-----------  Component  -----------//
+
+class {{ properCase name }} extends React.Component {
+
+  //-----------  HTML Render  -----------//
+
+  render(){
+    const { props, state } = this
+
+    return (
+      <Elements.Page title='{{ titleCase name }}'>
+        <Elements.Section>
+          <h1>{{ titleCase name }}</h1>
+        </Elements.Section>
+      </Elements.Page>
+    )
+  }
+}
+
+//-----------  Type Definitions  -----------//
+
+{{ properCase name }}.propTypes = {
+
+}
+
+//-----------  Export  -----------//
+
+export default {{ properCase name }}
