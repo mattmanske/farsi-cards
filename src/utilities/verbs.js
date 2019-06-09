@@ -2,6 +2,8 @@ import { get } from 'lodash'
 
 //-----------  Definitions  -----------//
 
+export const infinitive = 'infinitive'
+
 export const tenses = [
   'present',
   'simplePast',

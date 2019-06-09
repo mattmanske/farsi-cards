@@ -4,11 +4,11 @@ import { all, put, call, fork, takeEvery } from 'redux-saga/effects'
 
 import RSF                                 from 'models/firebase'
 import { APP }                             from 'models/app/actions'
-import { sagaActions, formActions }        from './actions'
+import { WORDS, sagaActions, formActions } from './actions'
 
 //-----------  Definitions  -----------//
 
-const collection = 'words'
+export const collection = 'words'
 
 //-----------  Transforms  -----------//
 
@@ -25,6 +25,8 @@ export function wordTransformer(words){
 
 export function* syncWordsSaga(){
   try {
+    // const collection = RSF.firestore.collection(sollection).where('account', '==', accountID)
+
     const refSync = yield fork(RSF.firestore.syncCollection,
       collection, {
         transform            : wordTransformer,
@@ -72,6 +74,16 @@ export function* updateWordSaga(action){
   }
 }
 
+export function* deleteWordSaga(action){
+  try {
+    const { id, ...payload } = action
+
+    yield call(RSF.firestore.deleteDocument, `${collection}/${id}`)
+  } catch(error){
+    yield put(sagaActions.failure(error))
+  }
+}
+
 //-----------  Watchers  -----------//
 
 export default function* wordsSagas(){
@@ -79,5 +91,6 @@ export default function* wordsSagas(){
     takeEvery(APP.INIT, syncWordsSaga),
     takeEvery(formActions.create.REQUEST, createWordSaga),
     takeEvery(formActions.update.REQUEST, updateWordSaga),
+    takeEvery(WORDS.DELETE, deleteWordSaga),
   ])
 }

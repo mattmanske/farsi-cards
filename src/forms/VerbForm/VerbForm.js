@@ -1,17 +1,17 @@
 //-----------  Imports  -----------//
 
-import Styled               from './styles'
+import Styled                 from './styles'
 
-import React                from 'react'
-import PropTypes            from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
-import { startCase }        from 'lodash'
+import React                  from 'react'
+import PropTypes              from 'prop-types'
+import { Field, reduxForm }   from 'redux-form'
+import { startCase }          from 'lodash'
 
-import FormField            from 'components/FormField'
-import FormSubmit           from 'components/FormSubmit'
-import FieldWrapper         from 'components/FieldWrapper'
-import { conjugations }     from 'utilities/verbs'
-import { tenses }           from '../../utilities/verbs';
+import FormField              from 'components/FormField'
+import FormSubmit             from 'components/FormSubmit'
+import FieldWrapper           from 'components/FieldWrapper'
+import { conjugations }       from 'utilities/verbs'
+import { tenses, infinitive } from '../../utilities/verbs';
 
 //-----------  Validation  -----------//
 
@@ -44,24 +44,24 @@ class VerbForm extends React.Component {
         {props.formTitle && <h4>{props.formTitle}</h4>}
 
         <fieldset>
-          <legend>Infinitive</legend>
+          <legend>{startCase(infinitive)}</legend>
           <FieldWrapper>
             <Field required
               autoFocus
               type='text'
-              name='infinitive.english'
+              name={`${infinitive}.english`}
               label='English'
               component={FormField}
             />
             <Field required
               type='text'
-              name='infinitive.phonetic'
+              name={`${infinitive}.phonetic`}
               label='Phonetic'
               component={FormField}
             />
             <Field required
               type='text'
-              name='infinitive.farsi'
+              name={`${infinitive}.farsi`}
               label='Farsi'
               component={FormField}
             />

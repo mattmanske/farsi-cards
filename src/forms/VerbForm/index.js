@@ -26,8 +26,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-  onSubmit: console.log,
-  // onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+  onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
 })
 
 //-----------  Exports  -----------//
