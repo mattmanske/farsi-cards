@@ -8,7 +8,7 @@ import { sagaActions, formActions }        from './actions'
 
 //-----------  Definitions  -----------//
 
-const collection = 'words'
+const collection = 'verbs'
 
 //-----------  Transforms  -----------//
 
@@ -23,7 +23,7 @@ export function wordTransformer(words){
 
 //-----------  Sagas  -----------//
 
-export function* syncWordsSaga(){
+export function* syncVerbsSaga(){
   try {
     const refSync = yield fork(RSF.firestore.syncCollection,
       collection, {
@@ -41,7 +41,7 @@ export function* syncWordsSaga(){
   }
 }
 
-export function* createWordSaga(action){
+export function* createVerbSaga(action){
   try {
     const { payload } = action
 
@@ -57,7 +57,7 @@ export function* createWordSaga(action){
   }
 }
 
-export function* updateWordSaga(action){
+export function* updateVerbSaga(action){
   try {
     const { id, ...payload } = action.payload
 
@@ -74,10 +74,10 @@ export function* updateWordSaga(action){
 
 //-----------  Watchers  -----------//
 
-export default function* wordsSagas(){
+export default function* verbsSagas(){
   yield all([
-    takeEvery(APP.INIT, syncWordsSaga),
-    takeEvery(formActions.create.REQUEST, createWordSaga),
-    takeEvery(formActions.update.REQUEST, updateWordSaga),
+    takeEvery(APP.INIT, syncVerbsSaga),
+    takeEvery(formActions.create.REQUEST, createVerbSaga),
+    takeEvery(formActions.update.REQUEST, updateVerbSaga),
   ])
 }

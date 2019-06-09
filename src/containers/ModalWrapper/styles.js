@@ -13,6 +13,7 @@ const modalWidth = ({ size, open }) => {
     case 'full' : return vars.maxWidth
     case 'lg'   : return vars.blockWidth
     case 'rg'   : return vars.compactWidth
+    case 'md'   : return vars.mediumWidth
     default     : return vars.smallWidth
   }
 }
@@ -66,6 +67,14 @@ const Content = styled.div`
   transform        : ${props => props.open ? 'scale(1)' : 'scale(0.7)'};
   transform-origin : 50% 0;
   transition       : 0.15s ease-in-out;
+
+  fieldset {
+    margin-left: -2.25em;
+    margin-right: -2.25em;
+    padding-left: 2.25em;
+    padding-right: 2.25em;
+    margin-top: 2.25em;
+  }
 `
 
 const Close = styled.a`

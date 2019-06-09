@@ -4,13 +4,13 @@ import { connect }           from 'react-redux'
 import { formValueSelector } from 'redux-form'
 
 import { formActions }       from 'models/words/actions'
+import { imageSearchURL }    from 'utilities/formatters'
 
 import WordForm              from './WordForm'
-import { imageSearchURL }    from 'utilities/formatters'
 
 //-----------  Redux Maps  -----------//
 
-const mapState = (state, ownProps) => {
+const mapState = (state) => {
   const title = formValueSelector('word')(state, 'english')
 
   return {

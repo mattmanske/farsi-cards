@@ -30,6 +30,8 @@ const validate = ({ farsi, english, phonetic, ...values }) => {
 
 const WordForm = ({ searchURL, handleSubmit, ...props }) => (
   <Styled.WordForm noValidate onSubmit={handleSubmit}>
+    {props.formTitle && <h4>{props.formTitle}</h4>}
+
     <Field required
       autoFocus
       type='text'
@@ -58,7 +60,7 @@ const WordForm = ({ searchURL, handleSubmit, ...props }) => (
     <small>
       Try this URL for images: <a href={searchURL} target='_blank' disabled={!searchURL}>Google Search</a>
     </small>
-    <FormSubmit text='Send Message' {...props} />
+    <FormSubmit text={props.submitText || 'Submit'} {...props} />
   </Styled.WordForm>
 )
 

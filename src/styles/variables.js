@@ -67,6 +67,7 @@ export default Object.assign({}, colors, {
   stopWidth         : '78rem',
   largeWidth        : '62rem',
   blockWidth        : '48rem',
+  compactWidth      : '42rem',
   mediumWidth       : '34rem',
   smallWidth        : '26rem',
 })

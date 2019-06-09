@@ -1,12 +1,13 @@
 //-----------  Imports  -----------//
 
-import Styled      from './styles'
+import Styled       from './styles'
 
-import React       from 'react'
-import PropTypes   from 'prop-types'
-import { Link }    from 'react-router-dom'
+import React        from 'react'
+import PropTypes    from 'prop-types'
+import { Link }     from 'react-router-dom'
 
-import LoadingIcon from 'components/LoadingIcon'
+import LoadingIcon  from 'components/LoadingIcon'
+import MaterialIcon from 'components/MaterialIcon'
 
 //-----------  Component  -----------//
 
@@ -24,9 +25,13 @@ const Button = ({ text, icon, small, loading, children, ...props }) => {
   return (
     <Styled.Button small={small} tag={tag} className='btn' {...props}>
       <Styled.Interior small={small}>
-        {icon && (
+        {loading ? (
           <Styled.Icon>
-            {icon}
+            <LoadingIcon />
+          </Styled.Icon>
+        ) : icon && (
+          <Styled.Icon>
+            <MaterialIcon icon={icon} />
           </Styled.Icon>
         )}
         {text || children}
@@ -41,7 +46,7 @@ Button.propTypes = {
   to       : PropTypes.string,
   text     : PropTypes.string,
   href     : PropTypes.string,
-  icon     : PropTypes.node,
+  icon     : PropTypes.string,
   bare     : PropTypes.bool,
   small    : PropTypes.bool,
   error    : PropTypes.bool,

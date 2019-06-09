@@ -1,14 +1,34 @@
 //-----------  Imports  -----------//
 
-import { connect } from 'react-redux'
+import { get }                    from 'lodash'
 
-import VerbForm from './VerbForm'
+import { connect }                from 'react-redux'
+import { formValueSelector }      from 'redux-form'
+
+import { formActions }            from 'models/verbs/actions'
+import { getConjugationDefaults } from 'utilities/verbs'
+
+import VerbForm                   from './VerbForm'
 
 //-----------  Redux Maps  -----------//
 
-const mapState = (state) => ({})
+const mapState = (state) => {
+  const bases = formValueSelector('verb')(state, 'bases');
 
-const mapDispatch = (dispatch) => ({})
+  return {
+    initialValues: {
+      present    : getConjugationDefaults(get(bases, 'present', {})),
+      simplePast : getConjugationDefaults(get(bases, 'simplePast', {})),
+    },
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true,
+  }
+}
+
+const mapDispatch = (dispatch) => ({
+  onSubmit: console.log,
+  // onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+})
 
 //-----------  Exports  -----------//
 
