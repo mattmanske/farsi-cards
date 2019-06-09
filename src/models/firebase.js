@@ -3,8 +3,8 @@
 import firebase          from 'firebase/app'
 import ReduxSagaFirebase from 'redux-saga-firebase'
 
-import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/firestore'
 
 //-----------  Definitions  -----------//
 
@@ -17,9 +17,7 @@ firebase.initializeApp({
 
 const firestore = firebase.firestore()
 
-firestore.settings({
-  timestampsInSnapshots: true
-})
+firestore.settings({})
 
 const RSF = new ReduxSagaFirebase(firebase)
 

@@ -1,9 +1,7 @@
-//-----------  Imports  -----------//
+j//-----------  Imports  -----------//
 
 import 'babel-polyfill'
 import 'styles/globals'
-
-import { appRoot }           from 'utilities/constants'
 
 import React                 from 'react'
 import ReactDOM              from 'react-dom'
@@ -16,10 +14,10 @@ import { Route,
          StaticRouter,
          BrowserRouter }     from 'react-router-dom'
 
-import AppWrapper            from 'containers/AppWrapper'
-import withAnalytics         from 'components/Analytics'
-import HtmlWrapper           from 'index'
-import appStore              from 'models/store'
+import { appRoot }           from 'src/utilities/constants'
+import AppWrapper            from 'src/containers/AppWrapper'
+import appStore              from 'src/models/store'
+import HtmlWrapper           from 'src/index'
 
 //-----------  Dynamic Rendering  -----------//
 
@@ -29,7 +27,7 @@ if (typeof document !== 'undefined'){
   ReactDOM.render(
     <Provider store={appStore}>
       <BrowserRouter>
-        <Route component={withAnalytics(AppWrapper)} />
+        <Route component={AppWrapper} />
       </BrowserRouter>
     </Provider>
   , rootElem)

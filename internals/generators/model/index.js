@@ -72,7 +72,7 @@ const actions = ({ name, sagas }) => {
   },{
     // Sagas Test File
     type         : 'add',
-    path         : '../../src/models/{{lowerCase name}}/_tests_/sagas.js',
+    path         : '../../src/models/{{lowerCase name}}/__tests__/sagas.js',
     templateFile : sagasTestTemplate,
     abortOnFail  : true,
   }] : []

@@ -33,3 +33,26 @@ export function getType(value){
   else if (isObject(value)) return 'object'
   else                      return 'string'
 }
+
+//-----------  Helpers  -----------//
+
+export function toSlug(text){
+  const a = 'àáäâèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
+  const b = 'aaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
+  const p = new RegExp(a.split('').join('|'), 'g')
+
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(p, c =>
+        b.charAt(a.indexOf(c)))     // Replace special chars
+    .replace(/&/g, '-and-')         // Replace & with 'and'
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '')             // Trim - from end of text
+}
+
+export function imageSearchURL(text){
+  const search = toSlug(text).replace(/\-+/g, '+')
+  return `https://www.google.com/search?q=${search}&tbs=itp:clipart,isz:i,ic:trans&tbm=isch&source=lnt&sa=X&ved=0ahUKEwjGycG-_9riAhUXvZ4KHe65AssQpwUIIg&biw=1440&bih=798&dpr=2`
+}

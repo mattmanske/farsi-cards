@@ -8,6 +8,8 @@ import createSagaMiddleware from 'redux-saga'
 import rootSaga             from 'models/sagas'
 import createReducers       from 'models/reducers'
 
+import { APP }              from 'models/app/actions'
+
 //-----------  Definitions  -----------//
 
 const sagaMiddleware = createSagaMiddleware()
@@ -42,6 +44,8 @@ function configureStore(initialState = {}){
   //-----------  Initialization  -----------//
 
   store.runSaga = sagaMiddleware.run(rootSaga)
+  store.dispatch({ type: APP.INIT });
+
   return store
 }
 

@@ -10,6 +10,7 @@ import LoadingBar    from 'containers/LoadingBar'
 
 import AppFooter     from 'components/AppFooter'
 import RouterWrapper from 'components/RouterWrapper'
+import ModalWrapper  from 'containers/ModalWrapper'
 
 import AppRoutes     from 'routes/index'
 
@@ -33,6 +34,8 @@ class AppWrapper extends React.Component {
         <AppFooter />
 
         <LoadingBar />
+
+        <ModalWrapper />
       </Styled.AppWrapper>
     )
   }

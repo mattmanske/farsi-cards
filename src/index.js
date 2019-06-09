@@ -40,6 +40,7 @@ export default (html, meta, assets, stylesheets) => {
         <meta name="keywords" content="${keywords}">
 
         ${stylesheets || ''}
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
         ${scripts || ''}
       </head>
 

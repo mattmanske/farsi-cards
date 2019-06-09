@@ -1,0 +1,27 @@
+//-----------  Imports  -----------//
+
+import { connect }           from 'react-redux'
+import { formValueSelector } from 'redux-form'
+
+import { formActions }       from 'models/words/actions'
+
+import WordForm              from './WordForm'
+import { imageSearchURL }    from 'utilities/formatters'
+
+//-----------  Redux Maps  -----------//
+
+const mapState = (state, ownProps) => {
+  const title = formValueSelector('word')(state, 'english')
+
+  return {
+    searchURL: imageSearchURL(title || ''),
+  }
+}
+
+const mapDispatch = (dispatch) => ({
+  onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+})
+
+//-----------  Exports  -----------//
+
+export default connect(mapState, mapDispatch)(WordForm)

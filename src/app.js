@@ -1,18 +1,18 @@
+
 //-----------  Imports  -----------//
 
 import 'babel-polyfill'
 import 'styles/globals'
 
-import { appRoot }      from 'utilities/constants'
-
-import React            from 'react'
-import ReactDOM         from 'react-dom'
-import { Provider }     from 'react-redux'
-import { AppContainer } from 'react-hot-loader'
+import React             from 'react'
+import ReactDOM          from 'react-dom'
+import { Provider }      from 'react-redux'
+import { AppContainer }  from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
 
-import AppWrapper       from 'containers/AppWrapper'
-import appStore         from 'models/store'
+import AppWrapper        from 'containers/AppWrapper'
+import { appRoot }       from 'utilities/constants'
+import appStore          from 'models/store'
 
 //-----------  Definitions  -----------//
 
