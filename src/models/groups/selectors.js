@@ -14,3 +14,7 @@ export const routeIdSelector = (_, props) => get(props, 'match.params.id')
 export const groupSelector = createSelector([groupsSelector, routeIdSelector], (groups, id) => {
   return find(groups, { id }) || {}
 })
+
+export const groupsOptionsSelector = createSelector([groupsSelector], (groups) => {
+  return groups.map((group) => ({ value: group.id, label: group.title }))
+})

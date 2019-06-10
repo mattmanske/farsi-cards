@@ -6,6 +6,7 @@ import { formValueSelector } from 'redux-form'
 import { formActions }       from 'models/words/actions'
 import { collection }        from 'models/words/sagas'
 import { imageSearchURL }    from 'utilities/formatters'
+import { modalActions }      from 'models/modal/actions'
 
 import WordForm              from './WordForm'
 
@@ -20,7 +21,8 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-  onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+  hideModal : () => dispatch(modalActions.hideModal()),
+  onSubmit  : console.log // (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
 })
 
 //-----------  Exports  -----------//

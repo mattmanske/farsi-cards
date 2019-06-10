@@ -1,8 +1,9 @@
 //-----------  Imports  -----------//
 
-import styled from 'styled-components'
+import styled         from 'styled-components'
 
-import vars   from 'styles/variables'
+import vars           from 'styles/variables'
+import { errorClass } from 'utilities/constants'
 
 //-----------  Definitions  ----------- */
 
@@ -21,13 +22,17 @@ Styled.FieldWrapper = styled.div`
   }
 
   > *:not(:first-child):not(:last-child) input {
-    border-radius : 0;
-    border-right  : none;
+    border-radius      : 0;
+    border-right-width : 0px;
+  }
+
+  > *:not(:last-child) input.${errorClass} {
+    border-right-width: 1px;
   }
 
   > *:first-child input {
     border-bottom-right-radius : 0;
-    border-right               : none;
+    border-right-width         : 0px;
     border-top-right-radius    : 0;
   }
 

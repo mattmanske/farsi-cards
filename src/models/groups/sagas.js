@@ -87,6 +87,7 @@ export function* deleteGroupSaga(action){
 export default function* groupsSagas(){
   yield all([
     takeEvery(APP.INIT, syncGroupsSaga),
+    takeEvery(GROUPS.CREATE, createGroupSaga),
     takeEvery(formActions.create.REQUEST, createGroupSaga),
     takeEvery(formActions.update.REQUEST, updateGroupSaga),
     takeEvery(GROUPS.DELETE, deleteGroupSaga),

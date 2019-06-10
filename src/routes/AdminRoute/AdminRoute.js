@@ -24,7 +24,7 @@ class AdminRoute extends React.Component {
       submitText      : (word.id ? 'Update' : 'Save'),
       initialValues   : word,
       onSubmitSuccess : hideModal,
-    }, { size: 'rg' })
+    }, { size: 'md' })
   }
 
   deleteWord = (word) => {
@@ -91,6 +91,10 @@ class AdminRoute extends React.Component {
               <MaterialIcon icon='delete' onClick={() => this.deleteVerb(verb)} />
             </div>
           ))} */}
+
+          <Button icon='add' onClick={() => this.wordModal()} small active>
+            Add Word
+          </Button>
 
           <Styled.GroupWrapper>
             {groups.map(group => (

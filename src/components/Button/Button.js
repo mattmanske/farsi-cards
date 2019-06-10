@@ -34,7 +34,9 @@ const Button = ({ text, icon, small, loading, children, ...props }) => {
             <MaterialIcon icon={icon} />
           </Styled.Icon>
         )}
-        {text || children}
+        <Styled.Text>
+          {text || children}
+        </Styled.Text>
       </Styled.Interior>
     </Styled.Button>
   )

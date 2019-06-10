@@ -42,7 +42,7 @@ function fontColor({ error, active }){
 Styled.Button = styled(resolveTagFromProps(['bare', 'small', 'error', 'loading', 'active']))`
   background-color : ${p => backgroundColor(p)};
   border           : ${p => p.bare ? 'none' : `1px solid ${borderColor(p)}`};
-  border-radius    : ${vars.radius};
+  border-radius    : ${vars.radiusFull};
   color            : ${p => fontColor(p)};
   display          : inline-block;
   font-size        : ${p => p.small ? '0.75em' : vars.fontSizeSm};
@@ -76,28 +76,29 @@ Styled.Button = styled(resolveTagFromProps(['bare', 'small', 'error', 'loading',
 `
 
 Styled.Interior = styled.span`
+  align-items : center;
+  display     : flex;
   font-size   : ${p => p.small ? '1em' : vars.fontSizeSm};
   font-weight : ${p => p.small ? vars.fontWeightBold : vars.fontWeight};
   text-align  : center;
   user-select : none;
+`
 
-  &::after {
-    content : ' ';
-    display : inline-block;
-  }
+Styled.Text = styled.span`
+
 `
 
 Styled.Icon = styled.span`
-  display      : inline-block;
   margin-left  : -0.67em;
   margin-right : 1em;
-  position     : relative;
-  top          : -1px;
+
+  i {
+    vertical-align: bottom;
+  }
 
   svg {
-    height : auto;
-    margin : -0.33em 0;
-    width  : 1.33em;
+    height : 1.33em;
+    width  : auto;
   }
 `
 

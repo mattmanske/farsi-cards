@@ -67,6 +67,7 @@ const Content = styled.div`
   transform        : ${props => props.open ? 'scale(1)' : 'scale(0.7)'};
   transform-origin : 50% 0;
   transition       : 0.15s ease-in-out;
+  overflow: scroll;
 
   fieldset {
     margin-left: -2.25em;

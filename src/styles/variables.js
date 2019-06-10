@@ -49,6 +49,7 @@ export default Object.assign({}, colors, {
   radius            : '3px',
   radiusSm          : '2px',
   radiusLg          : '4px',
+  radiusFull        : '10rem',
   border            : `1px solid ${rgba(colors.gray, 0.75)}`,
   borderDark        : `1px solid ${rgba(colors.gray, 0.65)}`,
   borderLight       : `1px solid ${rgba(colors.gray, 0.85)}`,

@@ -51,6 +51,10 @@ Styled.FieldLabel = styled.label`
   sup {
     color: ${vars.red};
   }
+
+  small {
+    font-style: italic;
+  }
 `
 
 Styled.FieldWrapper = styled.div`

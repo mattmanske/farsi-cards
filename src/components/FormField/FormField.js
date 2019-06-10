@@ -5,21 +5,31 @@ import Styled         from './styles'
 import React          from 'react'
 import PropTypes      from 'prop-types'
 
+import GroupSelect    from 'containers/GroupSelect'
 import { errorClass } from 'utilities/constants'
 
 //-----------  Helpers  -----------//
 
 function getInputTag(type, props){
   switch (type){
-    case 'textarea' : return <textarea {...props} />
-    default         : return <input type={type} {...props} />
+    case 'textarea':
+      return (
+        <textarea {...props} />
+      )
+    case 'group-select':
+      return (
+        <GroupSelect {...props} />
+      )
+    default:
+      return (
+        <input type={type} {...props} />
+      )
   }
 }
 
 //-----------  Component  -----------//
 
-const FormField = ({ type, meta, input, label, append, warning, horizontal, ...props }) => {
-
+const FormField = ({ type, meta, input, label, notes, append, warning, horizontal, ...props }) => {
   const id        = props.id || input.name
   const invalid   = !!(meta.touched && meta.error)
   const className = (invalid ? errorClass : undefined)
@@ -27,7 +37,11 @@ const FormField = ({ type, meta, input, label, append, warning, horizontal, ...p
   return (
     <Styled.FormField isInvalid={invalid} horizontal={horizontal}>
       <Styled.FieldLabel htmlFor={id} isInvalid={invalid}>
-        {label}{!!label && props.required && <sup>*</sup>}
+        {label}
+        {!!label && props.required && <sup>*</sup>}
+        {notes && (
+          <small dangerouslySetInnerHTML={{ __html: notes }} />
+        )}
       </Styled.FieldLabel>
 
       <Styled.FieldWrapper isInvalid={invalid}>
