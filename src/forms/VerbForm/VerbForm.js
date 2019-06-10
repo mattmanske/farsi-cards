@@ -1,17 +1,17 @@
 //-----------  Imports  -----------//
 
-import Styled                 from './styles'
+import Styled                               from './styles'
 
-import React                  from 'react'
-import PropTypes              from 'prop-types'
-import { Field, reduxForm }   from 'redux-form'
-import { startCase }          from 'lodash'
+import React                                from 'react'
+import PropTypes                            from 'prop-types'
+import { Field, reduxForm }                 from 'redux-form'
+import { startCase }                        from 'lodash'
 
-import FormField              from 'components/FormField'
-import FormSubmit             from 'components/FormSubmit'
-import FieldWrapper           from 'components/FieldWrapper'
-import { conjugations }       from 'utilities/verbs'
-import { tenses, infinitive } from '../../utilities/verbs';
+import FormField                            from 'components/FormField'
+import FormSubmit                           from 'components/FormSubmit'
+import FieldWrapper                         from 'components/FieldWrapper'
+import { tenses, infinitive, conjugations } from 'utilities/verbs';
+import { collection }                       from 'models/verbs/sagas'
 
 //-----------  Validation  -----------//
 
@@ -133,4 +133,4 @@ VerbForm.propTypes = {
 
 //-----------  Export  -----------//
 
-export default reduxForm({ form: 'verb', validate })(VerbForm)
+export default reduxForm({ form: collection, validate })(VerbForm)

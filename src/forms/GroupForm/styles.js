@@ -8,9 +8,9 @@ import vars   from 'styles/variables'
 
 const Styled = {}
 
-//-----------  Dashboard Route  ----------- */
+//-----------  Group Form  ----------- */
 
-Styled.DashboardRoute = styled.div``
+Styled.GroupForm = styled.form``
 
 //-----------  Exports  ----------- */
 

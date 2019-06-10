@@ -12,14 +12,16 @@ import MaterialIcon from 'components/MaterialIcon'
 
 import WordForm     from 'forms/WordForm'
 import VerbForm     from 'forms/VerbForm'
+import GroupForm    from 'forms/GroupForm'
 
 //-----------  Definitions  -----------//
 
 const delay = 150
 
 const MODAL_COMPONENTS = {
-  WORD_FORM: WordForm,
-  VERB_FORM: VerbForm,
+  WORD_FORM  : WordForm,
+  VERB_FORM  : VerbForm,
+  GROUP_FORM : GroupForm,
 }
 
 //-----------  Helpers  -----------//

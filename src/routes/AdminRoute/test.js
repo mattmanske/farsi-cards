@@ -7,7 +7,7 @@ import { StaticRouter } from 'react-router-dom'
 
 import configureStore   from 'models/store'
 
-import DashboardRoute from './index'
+import AdminRoute       from './index'
 
 //-----------  Definitions  -----------//
 
@@ -16,14 +16,14 @@ const context = {}
 const container = mount(
   <Provider store={configureStore()}>
     <StaticRouter context={context}>
-      <DashboardRoute />
+      <AdminRoute />
     </StaticRouter>
   </Provider>
 )
 
 //-----------  Tests  -----------//
 
-describe('<DashboardRoute />', () => {
+describe('<AdminRoute />', () => {
   it('Renders', () => {
     expect(container.length).toBe(1)
   })

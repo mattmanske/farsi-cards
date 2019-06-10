@@ -36,7 +36,7 @@ class AppHeader extends React.Component {
 
   renderLinks = (mobile = false) => {
     let links = [
-      <NavLink key='about' to='/dashboard'>Dashboard</NavLink>,
+      <NavLink key='admin' to='/admin'>Admin</NavLink>,
     ]
 
     return links

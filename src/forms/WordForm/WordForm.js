@@ -7,7 +7,8 @@ import PropTypes            from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
 import FormField            from 'components/FormField'
-import FormSubmit           from  'components/FormSubmit'
+import FormSubmit           from 'components/FormSubmit'
+import { collection }       from 'models/words/sagas'
 
 //-----------  Validation  -----------//
 
@@ -74,4 +75,4 @@ WordForm.propTypes = {
 
 //-----------  Export  -----------//
 
-export default reduxForm({ form: 'word', validate })(WordForm)
+export default reduxForm({ form: collection, validate })(WordForm)

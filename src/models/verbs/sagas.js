@@ -117,7 +117,7 @@ export function* deleteVerbSaga(action){
 
 export default function* verbsSagas(){
   yield all([
-    takeEvery(APP.INIT, syncVerbsSaga),
+    // takeEvery(APP.INIT, syncVerbsSaga),
     takeEvery(formActions.create.REQUEST, createVerbSaga),
     takeEvery(formActions.update.REQUEST, updateVerbSaga),
     takeEvery(VERBS.DELETE, deleteVerbSaga),

@@ -1,20 +1,20 @@
 //-----------  Imports  -----------//
 
-import { all, put, call, fork, takeEvery } from 'redux-saga/effects'
+import { all, put, call, fork, takeEvery }  from 'redux-saga/effects'
 
-import RSF                                 from 'models/firebase'
-import { APP }                             from 'models/app/actions'
-import { WORDS, sagaActions, formActions } from './actions'
+import RSF                                  from 'models/firebase'
+import { APP }                              from 'models/app/actions'
+import { GROUPS, sagaActions, formActions } from './actions'
 
 //-----------  Definitions  -----------//
 
-export const collection = 'words'
+export const collection = 'groups'
 
 //-----------  Transforms  -----------//
 
-export function wordTransformer(words){
+export function groupTransformer(group){
   const res = []
-  words.forEach(doc => res.push({
+  group.forEach(doc => res.push({
     id: doc.id,
     ...doc.data()
   }))
@@ -23,13 +23,11 @@ export function wordTransformer(words){
 
 //-----------  Sagas  -----------//
 
-export function* syncWordsSaga(){
+export function* syncGroupsSaga(){
   try {
-    // const collection = RSF.firestore.collection(sollection).where('account', '==', accountID)
-
     const refSync = yield fork(RSF.firestore.syncCollection,
       collection, {
-        transform            : wordTransformer,
+        transform            : groupTransformer,
         successActionCreator : sagaActions.success,
         failureActionCreator : sagaActions.failure,
       }
@@ -43,7 +41,7 @@ export function* syncWordsSaga(){
   }
 }
 
-export function* createWordSaga(action){
+export function* createGroupSaga(action){
   try {
     const { payload } = action
 
@@ -59,7 +57,8 @@ export function* createWordSaga(action){
   }
 }
 
-export function* updateWordSaga(action){
+
+export function* updateGroupSaga(action){
   try {
     const { id, ...payload } = action.payload
 
@@ -74,11 +73,10 @@ export function* updateWordSaga(action){
   }
 }
 
-export function* deleteWordSaga(action){
+export function* deleteGroupSaga(action){
   try {
     const { id, ...payload } = action
 
-    yield call(RSF.firestore.deleteDocument, `${collection}/${id}`)
   } catch(error){
     yield put(sagaActions.failure(error))
   }
@@ -86,11 +84,11 @@ export function* deleteWordSaga(action){
 
 //-----------  Watchers  -----------//
 
-export default function* wordsSagas(){
+export default function* groupsSagas(){
   yield all([
-    // takeEvery(APP.INIT, syncWordsSaga),
-    takeEvery(formActions.create.REQUEST, createWordSaga),
-    takeEvery(formActions.update.REQUEST, updateWordSaga),
-    takeEvery(WORDS.DELETE, deleteWordSaga),
+    takeEvery(APP.INIT, syncGroupsSaga),
+    takeEvery(formActions.create.REQUEST, createGroupSaga),
+    takeEvery(formActions.update.REQUEST, updateGroupSaga),
+    takeEvery(GROUPS.DELETE, deleteGroupSaga),
   ])
 }

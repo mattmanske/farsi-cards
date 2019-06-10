@@ -12,7 +12,7 @@ import MaterialIcon from 'components/MaterialIcon'
 
 //-----------  Component  -----------//
 
-class DashboardRoute extends React.Component {
+class AdminRoute extends React.Component {
 
   //-----------  Word Event Handlers  -----------//
 
@@ -46,21 +46,37 @@ class DashboardRoute extends React.Component {
   }
 
   deleteVerb = (verb) => {
-    // if (window.confirm('Are you sure you want to delete this word?'))
+    // if (window.confirm('Are you sure you want to delete this verb?'))
       return this.props.deleteVerb(verb.id)
+  }
+
+  //-----------  Group Event Handlers  -----------//
+
+  groupModal = (group = {}) => {
+    const { showModal, hideModal } = this.props
+
+    showModal('GROUP_FORM', {
+      formTitle       : (group.id ? 'Edit Group' : 'Add New Group'),
+      submitText      : (group.id ? 'Update' : 'Save'),
+      initialValues   : group,
+      onSubmitSuccess : hideModal,
+    }, { size: 'sm' })
+  }
+
+  deleteGroup = (group) => {
+    // if (window.confirm('Are you sure you want to delete this group?'))
+      return this.props.deleteVerb(group.id)
   }
 
   //-----------  HTML Render  -----------//
 
   render(){
-    const { words, verbs } = this.props
-
-    console.log(verbs);
+    const { words, verbs, groups } = this.props
 
     return (
-      <Elements.Page title='Dashboard Route'>
+      <Elements.Page title='Admin Dashboard'>
         <Elements.Section>
-          {words.map(word => (
+          {/* {words.map(word => (
             <div key={word.id}>
               <span>{word.english} • {word.phonetic} • {word.farsi}</span>
               <MaterialIcon icon='edit' onClick={() => this.wordModal(word)} />
@@ -74,16 +90,31 @@ class DashboardRoute extends React.Component {
               <MaterialIcon icon='edit' onClick={() => this.verbModal(verb)} />
               <MaterialIcon icon='delete' onClick={() => this.deleteVerb(verb)} />
             </div>
-          ))}
+          ))} */}
 
-          <ButtonGroup>
-            <Button icon='add' onClick={() => this.wordModal()}>
-              Add Word
-            </Button>
-            <Button icon='add' onClick={() => this.verbModal()}>
-              Add Verb
-            </Button>
-          </ButtonGroup>
+          <Styled.GroupWrapper>
+            {groups.map(group => (
+              <Styled.Group key={group.id}>
+                <header>
+                  <small>Group</small>
+                  <h3>{group.title}</h3>
+                </header>
+                <Styled.Actions>
+                  <ButtonGroup small bare>
+                    <Button text='Edit' onClick={() => this.groupModal(group)} />
+                    <Button text='Delete' onClick={() => this.deleteGroup(group)} />
+                  </ButtonGroup>
+                </Styled.Actions>
+              </Styled.Group>
+            ))}
+
+            <Styled.AddNew onClick={() => this.groupModal()}>
+                <Styled.Center>
+                  <MaterialIcon icon='create_new_folder' />
+                  <h5>Create New Group</h5>
+                </Styled.Center>
+            </Styled.AddNew>
+          </Styled.GroupWrapper>
         </Elements.Section>
       </Elements.Page>
     )
@@ -92,9 +123,10 @@ class DashboardRoute extends React.Component {
 
 //-----------  Type Definitions  -----------//
 
-DashboardRoute.propTypes = {
+AdminRoute.propTypes = {
   words      : PropTypes.array.isRequired,
   verbs      : PropTypes.array.isRequired,
+  groups     : PropTypes.array.isRequired,
   showModal  : PropTypes.func.isRequired,
   hideModal  : PropTypes.func.isRequired,
   deleteWord : PropTypes.func.isRequired,
@@ -103,4 +135,4 @@ DashboardRoute.propTypes = {
 
 //-----------  Export  -----------//
 
-export default DashboardRoute
+export default AdminRoute

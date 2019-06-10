@@ -42,7 +42,7 @@ function fontColor({ error, active }){
 Styled.Button = styled(resolveTagFromProps(['bare', 'small', 'error', 'loading', 'active']))`
   background-color : ${p => backgroundColor(p)};
   border           : ${p => p.bare ? 'none' : `1px solid ${borderColor(p)}`};
-  border-radius    : 10rem;
+  border-radius    : ${vars.radius};
   color            : ${p => fontColor(p)};
   display          : inline-block;
   font-size        : ${p => p.small ? '0.75em' : vars.fontSizeSm};

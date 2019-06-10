@@ -6,6 +6,7 @@ import { connect }                from 'react-redux'
 import { formValueSelector }      from 'redux-form'
 
 import { formActions }            from 'models/verbs/actions'
+import { collection }             from 'models/verbs/sagas'
 import { getConjugationDefaults } from 'utilities/verbs'
 
 import VerbForm                   from './VerbForm'
@@ -13,7 +14,7 @@ import VerbForm                   from './VerbForm'
 //-----------  Redux Maps  -----------//
 
 const mapState = (state) => {
-  const bases = formValueSelector('verb')(state, 'bases');
+  const bases = formValueSelector(collection)(state, 'bases');
 
   return {
     initialValues: {

@@ -22,16 +22,16 @@ Styled.ButtonGroup = styled.div`
     position           : relative;
 
     &:first-child {
-      border-bottom-left-radius : 10rem;
+      border-bottom-left-radius : ${vars.radius};
       border-left-width         : 1px;
-      border-top-left-radius    : 10rem;
+      border-top-left-radius    : ${vars.radius};
       padding-left              : ${p => p.bare ? 0 : '1.85em'};
     }
 
     &:last-child {
-      border-bottom-right-radius : 10rem;
+      border-bottom-right-radius : ${vars.radius};
       border-right-width         : 1px;
-      border-top-right-radius    : 10rem;
+      border-top-right-radius    : ${vars.radius};
       padding-right              : ${p => p.bare ? 0 : '1.85em'};
     }
 
