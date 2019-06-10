@@ -94,7 +94,7 @@ class AdminRoute extends React.Component {
 
           <Styled.GroupWrapper>
             {groups.map(group => (
-              <Styled.Group key={group.id}>
+              <Styled.Group key={group.id} to={`/admin/${group.id}`}>
                 <header>
                   <small>Group</small>
                   <h3>{group.title}</h3>

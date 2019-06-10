@@ -1,6 +1,7 @@
 //-----------  Imports  -----------//
 
 import styled          from 'styled-components'
+import { Link }        from 'react-router-dom'
 
 import vars            from 'styles/variables'
 import { centerAlign } from 'styles/mixins'
@@ -32,13 +33,20 @@ Styled.GroupWrapper = styled.div`
   }
 `
 
-Styled.Group = styled.div`
-  align-items     : stretch;
-  background      : ${vars.white};
-  box-shadow      : ${vars.shadow};
-  display         : flex;
-  flex-direction  : column;
-  justify-content : space-between;
+Styled.Group = styled(Link)`
+  align-items      : stretch;
+  background       : ${vars.white};
+  box-shadow       : ${vars.shadow};
+  display          : flex;
+  flex-direction   : column;
+  justify-content  : space-between;
+  transform        : scale(1);
+  transform-origin : center center;
+
+  &:hover {
+    box-shadow : ${vars.shadowDark};
+    transform  : scale(1.025);
+  }
 `
 
 Styled.Actions = styled.div``

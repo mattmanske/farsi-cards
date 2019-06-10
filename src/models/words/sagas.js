@@ -23,21 +23,18 @@ export function wordTransformer(words){
 
 //-----------  Sagas  -----------//
 
-export function* syncWordsSaga(){
+export function* requestWordsSaga(action){
   try {
-    // const collection = RSF.firestore.collection(sollection).where('account', '==', accountID)
+    const { groups } = action.query;
 
-    const refSync = yield fork(RSF.firestore.syncCollection,
-      collection, {
-        transform            : wordTransformer,
-        successActionCreator : sagaActions.success,
-        failureActionCreator : sagaActions.failure,
-      }
-    )
+    const query = firestore.collection(collection)
 
-    yield take(APP.FAILURE)
-    yield cancel(refSync)
-    yield put(sagaActions.failure())
+    groups.forEach((groupID) => base.where('groups', 'includes', groupID))
+
+    const refs = yield fork(RSF.firestore.getCollection, query);
+    const data = wordTransformer(refs)
+
+    yield put(sagaActions.success(data))
   } catch(error){
     yield put(sagaActions.failure(error))
   }
@@ -88,7 +85,7 @@ export function* deleteWordSaga(action){
 
 export default function* wordsSagas(){
   yield all([
-    // takeEvery(APP.INIT, syncWordsSaga),
+    takeEvery(WORDS.REQUEST, requestWordsSaga),
     takeEvery(formActions.create.REQUEST, createWordSaga),
     takeEvery(formActions.update.REQUEST, updateWordSaga),
     takeEvery(WORDS.DELETE, deleteWordSaga),

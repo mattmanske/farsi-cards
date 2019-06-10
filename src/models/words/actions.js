@@ -15,9 +15,10 @@ export const formActions = {
 }
 
 export const wordsActions = {
-  create : (payload) => ({ type: WORDS.CREATE, payload }),
-  update : (payload) => ({ type: WORDS.UPDATE, payload }),
-  delete : (id) => ({ type: WORDS.DELETE, id })
+  request : (query)   => ({ type : WORDS.REQUEST, query }),
+  create  : (payload) => ({ type : WORDS.CREATE, payload }),
+  update  : (payload) => ({ type : WORDS.UPDATE, payload }),
+  delete  : (id)      => ({ type : WORDS.DELETE, id })
 }
 
 //-----------  Saga Actions  -----------//
