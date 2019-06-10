@@ -65,7 +65,7 @@ class AdminRoute extends React.Component {
 
   deleteGroup = (group) => {
     // if (window.confirm('Are you sure you want to delete this group?'))
-      return this.props.deleteVerb(group.id)
+      return this.props.deleteGroup(group.id)
   }
 
   //-----------  HTML Render  -----------//
@@ -98,11 +98,11 @@ class AdminRoute extends React.Component {
 
           <Styled.GroupWrapper>
             {groups.map(group => (
-              <Styled.Group key={group.id} to={`/admin/${group.id}`}>
-                <header>
+              <Styled.Group key={group.id}>
+                <Styled.Header to={`/admin/${group.id}`}>
                   <small>Group</small>
                   <h3>{group.title}</h3>
-                </header>
+                </Styled.Header>
                 <Styled.Actions>
                   <ButtonGroup small bare>
                     <Button text='Edit' onClick={() => this.groupModal(group)} />
@@ -128,13 +128,14 @@ class AdminRoute extends React.Component {
 //-----------  Type Definitions  -----------//
 
 AdminRoute.propTypes = {
-  words      : PropTypes.array.isRequired,
-  verbs      : PropTypes.array.isRequired,
-  groups     : PropTypes.array.isRequired,
-  showModal  : PropTypes.func.isRequired,
-  hideModal  : PropTypes.func.isRequired,
-  deleteWord : PropTypes.func.isRequired,
-  deleteVerb : PropTypes.func.isRequired,
+  words       : PropTypes.array.isRequired,
+  verbs       : PropTypes.array.isRequired,
+  groups      : PropTypes.array.isRequired,
+  showModal   : PropTypes.func.isRequired,
+  hideModal   : PropTypes.func.isRequired,
+  deleteWord  : PropTypes.func.isRequired,
+  deleteVerb  : PropTypes.func.isRequired,
+  deleteGroup : PropTypes.func.isRequired,
 }
 
 //-----------  Export  -----------//

@@ -15,7 +15,6 @@ export const formActions = {
 }
 
 export const groupsActions = {
-  create : (payload) => ({ type: GROUPS.CREATE, payload }),
   update : (payload) => ({ type: GROUPS.UPDATE, payload }),
   delete : (id) => ({ type: GROUPS.DELETE, id })
 }

@@ -2,8 +2,8 @@
 
 import { all, put, call, fork, takeEvery }  from 'redux-saga/effects'
 
-import RSF                                  from 'models/firebase'
 import { APP }                              from 'models/app/actions'
+import RSF, { firebase, firestore }         from 'models/firebase'
 import { GROUPS, sagaActions, formActions } from './actions'
 
 //-----------  Definitions  -----------//
@@ -21,12 +21,26 @@ export function groupTransformer(group){
   return res
 }
 
+export function* addWordToGroup(id, groupID){
+  try {
+    yield call(RSF.firestore.updateDocument, `${collection}/${groupID}`, {
+      words: firebase.firestore.FieldValue.arrayUnion(id)
+    })
+
+    return
+  } catch(error){
+    throw error
+  }
+}
+
 //-----------  Sagas  -----------//
 
 export function* syncGroupsSaga(){
   try {
+    const query = firestore.collection(collection).orderBy('createdAt')
+
     const refSync = yield fork(RSF.firestore.syncCollection,
-      collection, {
+      query, {
         transform            : groupTransformer,
         successActionCreator : sagaActions.success,
         failureActionCreator : sagaActions.failure,
@@ -46,8 +60,9 @@ export function* createGroupSaga(action){
     const { payload } = action
 
     const { id } = yield call(RSF.firestore.addDocument, collection, {
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt : new Date(),
+      updatedAt : new Date(),
+      words     : [],
       ...payload
     })
 
@@ -56,7 +71,6 @@ export function* createGroupSaga(action){
     yield put(formActions.create.failure(error))
   }
 }
-
 
 export function* updateGroupSaga(action){
   try {
@@ -87,7 +101,6 @@ export function* deleteGroupSaga(action){
 export default function* groupsSagas(){
   yield all([
     takeEvery(APP.INIT, syncGroupsSaga),
-    takeEvery(GROUPS.CREATE, createGroupSaga),
     takeEvery(formActions.create.REQUEST, createGroupSaga),
     takeEvery(formActions.update.REQUEST, updateGroupSaga),
     takeEvery(GROUPS.DELETE, deleteGroupSaga),

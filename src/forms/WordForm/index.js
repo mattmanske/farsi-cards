@@ -22,7 +22,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => ({
   hideModal : () => dispatch(modalActions.hideModal()),
-  onSubmit  : console.log // (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+  onSubmit  : (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
 })
 
 //-----------  Exports  -----------//

@@ -33,7 +33,7 @@ Styled.GroupWrapper = styled.div`
   }
 `
 
-Styled.Group = styled(Link)`
+Styled.Group = styled.div`
   align-items      : stretch;
   background       : ${vars.white};
   box-shadow       : ${vars.shadow};
@@ -48,6 +48,8 @@ Styled.Group = styled(Link)`
     transform  : scale(1.025);
   }
 `
+
+Styled.Header = styled(Link)``
 
 Styled.Actions = styled.div``
 

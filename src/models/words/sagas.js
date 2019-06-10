@@ -2,9 +2,9 @@
 
 import { all, put, call, fork, takeEvery } from 'redux-saga/effects'
 
-import RSF                                 from 'models/firebase'
-import { APP }                             from 'models/app/actions'
+import RSF, { firestore }                  from 'models/firebase'
 import { WORDS, sagaActions, formActions } from './actions'
+import { addWordToGroup }                  from 'models/groups/sagas'
 
 //-----------  Definitions  -----------//
 
@@ -49,6 +49,8 @@ export function* createWordSaga(action){
       updatedAt: new Date(),
       ...payload
     })
+
+    yield all(payload.groups.map((groupID) => call(addWordToGroup, id, groupID)))
 
     yield put(formActions.create.success(id))
   } catch(error){

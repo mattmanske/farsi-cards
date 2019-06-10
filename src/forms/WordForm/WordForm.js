@@ -14,7 +14,7 @@ import { collection }       from 'models/words/sagas'
 
 //-----------  Validation  -----------//
 
-const validate = ({ farsi, english, phonetic, ...values }) => {
+const validate = ({ farsi, groups, english, phonetic, ...values }) => {
   let errors = {}
 
   if (!farsi)
@@ -25,6 +25,9 @@ const validate = ({ farsi, english, phonetic, ...values }) => {
 
   if (!phonetic)
     errors.phonetic = 'Required'
+
+  if (!groups || !groups.length)
+    errors.groups = 'Required'
 
   return errors
 }

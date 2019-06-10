@@ -23,12 +23,7 @@ Styled.AppFooter = styled.footer`
     flex-direction  : row;
     justify-content : space-between;
 
-    @media (max-width: 750px){
-      padding-top: 1rem;
-    }
-
     @media (max-width: 500px){
-      padding-top: 2rem;
 
       small {
         display    : block;
