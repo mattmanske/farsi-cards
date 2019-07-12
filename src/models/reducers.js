@@ -8,6 +8,7 @@ import modalReducer               from 'models/modal/reducer'
 import wordsReducer               from 'models/words/reducer'
 import verbsReducer               from 'models/verbs/reducer'
 import groupsReducer              from 'models/groups/reducer'
+import reviewReducer              from 'models/review/reducer'
 
 //-----------  Exports  -----------//
 
@@ -18,6 +19,7 @@ export default function createReducers(){
     modal    : modalReducer,
     verbs    : verbsReducer,
     groups   : groupsReducer,
+    review   : reviewReducer,
     requests : requestsReducer,
   })
 }

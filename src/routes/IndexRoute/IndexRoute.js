@@ -8,6 +8,7 @@ import { Link }    from 'react-router-dom'
 
 import vars        from 'styles/variables'
 
+import Button      from 'components/Button'
 import Elements    from 'components/PageElements'
 import { appDesc } from 'utilities/constants'
 
@@ -24,6 +25,7 @@ class IndexRoute extends React.Component {
       <Elements.Page>
         <Styled.HeroSection>
           <h2>{appDesc}</h2>
+          <Button to="/review">Start Review</Button>
         </Styled.HeroSection>
       </Elements.Page>
     )

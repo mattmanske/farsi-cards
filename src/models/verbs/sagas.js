@@ -4,7 +4,7 @@ import { pick }                             from 'lodash'
 
 import { all, put, call, fork, takeEvery }  from 'redux-saga/effects'
 
-import RSF                                  from 'models/firebase'
+import { RSF }                              from 'models/database'
 import { APP }                              from 'models/app/actions'
 import { VERBS, sagaActions, formActions }  from './actions'
 import { tenses, infinitive, conjugations } from '../../utilities/verbs';

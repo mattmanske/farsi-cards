@@ -7,6 +7,7 @@ import PropTypes                            from 'prop-types'
 import { Field, reduxForm }                 from 'redux-form'
 import { startCase }                        from 'lodash'
 
+import Button                               from 'components/Button'
 import FormField                            from 'components/FormField'
 import FormSubmit                           from 'components/FormSubmit'
 import FieldWrapper                         from 'components/FieldWrapper'
@@ -117,7 +118,10 @@ class VerbForm extends React.Component {
             </Styled.Conjugations>
           </fieldset>
         ))}
-        <FormSubmit text={props.submitText || 'Submit'} {...props} />
+        <Styled.FormFooter>
+          <Button onClick={hideModal} bare>Cancel</Button>
+          <FormSubmit text={props.submitText || 'Submit'} {...props} />
+        </Styled.FormFooter>
       </Styled.VerbForm>
     )
   }

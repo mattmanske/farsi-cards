@@ -1,38 +1,4 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{userID} {
-      allow read, write:    if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-      allow create, update: if request.auth.uid == userID;
-      allow read:           if request.auth.uid != null;
-    }
-
-    match /contact/{contactID} {
-			allow read:  if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-			allow write: if true;
-    }
-
-    match /invites/{inviteID} {
-      allow read, write: if request.auth.uid != null;
-    }
-
-    match /accounts/{accountID} {
-      allow read, write:  if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-      allow read, update: if accountID in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.accounts;
-      allow read, update: if request.auth.uid != null;
-
-      match /changes/{changeID} {
-      	allow read, create: if request.auth.uid != null;
-    	}
-    }
-
-    match /orders/{orderID} {
-      allow read, write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-      allow read, write: if exists(/databases/$(database)/documents/accounts/$(resource.data.account)/users/$(request.auth.uid));
-			allow read, write: if request.auth.uid != null;
-
-      match /changes/{changeID} {
-      	allow read, create: if request.auth.uid != null;
-    	}
-    }
   }
 }

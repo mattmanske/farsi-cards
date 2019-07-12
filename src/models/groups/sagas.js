@@ -3,7 +3,7 @@
 import { all, put, call, fork, takeEvery }  from 'redux-saga/effects'
 
 import { APP }                              from 'models/app/actions'
-import RSF, { firebase, firestore }         from 'models/firebase'
+import { RSF, firebase, firestore }         from 'models/database'
 import { GROUPS, sagaActions, formActions } from './actions'
 
 //-----------  Definitions  -----------//
@@ -37,8 +37,7 @@ export function* addWordToGroup(id, groupID){
 
 export function* syncGroupsSaga(){
   try {
-    const query = firestore.collection(collection).orderBy('createdAt')
-
+    const query   = firestore.collection(collection).orderBy('createdAt')
     const refSync = yield fork(RSF.firestore.syncCollection,
       query, {
         transform            : groupTransformer,

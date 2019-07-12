@@ -2,7 +2,8 @@
 
 import { all, put, call, fork, takeEvery } from 'redux-saga/effects'
 
-import RSF, { firestore }                  from 'models/firebase'
+import { APP }                             from 'models/app/actions'
+import { RSF, firestore }                  from 'models/database'
 import { WORDS, sagaActions, formActions } from './actions'
 import { addWordToGroup }                  from 'models/groups/sagas'
 
@@ -21,17 +22,40 @@ export function wordTransformer(words){
   return res
 }
 
+export function* getWord(id){
+  try {
+    return yield call(RSF.firestore.getDocument, `${collection}/${id}`)
+  } catch(error){
+    throw error
+  }
+}
+
 //-----------  Sagas  -----------//
+
+export function* syncWordsSaga(){
+  try {
+    const query   = firestore.collection(collection).orderBy('createdAt')
+    const refSync = yield fork(RSF.firestore.syncCollection,
+      query, {
+        transform            : wordTransformer,
+        successActionCreator : sagaActions.success,
+        failureActionCreator : sagaActions.failure,
+      }
+    )
+
+    yield take(APP.FAILURE)
+    yield cancel(refSync)
+    yield put(sagaActions.failure())
+  } catch(error){
+    yield put(sagaActions.failure(error))
+  }
+}
 
 export function* requestWordsSaga(action){
   try {
-    const { groups } = action.query;
+    const { group } = action.query;
 
-    const query = firestore.collection(collection)
-
-    groups.forEach((groupID) => base.where('groups', 'includes', groupID))
-
-    const refs = yield fork(RSF.firestore.getCollection, query);
+    const refs = yield all(group.words.map((id) => call(RSF.firestore.getDocument, `${collection}/${id}`)))
     const data = wordTransformer(refs)
 
     yield put(sagaActions.success(data))
@@ -87,6 +111,7 @@ export function* deleteWordSaga(action){
 
 export default function* wordsSagas(){
   yield all([
+    takeEvery(APP.INIT, syncWordsSaga),
     takeEvery(WORDS.REQUEST, requestWordsSaga),
     takeEvery(formActions.create.REQUEST, createWordSaga),
     takeEvery(formActions.update.REQUEST, updateWordSaga),

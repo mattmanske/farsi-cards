@@ -1,12 +1,20 @@
 //-----------  Imports  -----------//
 
+// import RxDB              from 'rxdb'
 import firebase          from 'firebase/app'
 import ReduxSagaFirebase from 'redux-saga-firebase'
 
 import 'firebase/auth'
 import 'firebase/firestore'
 
-//-----------  Definitions  -----------//
+//-----------  RxDB  -----------//
+
+// const localDB = await RxDB.create({
+//   name: 'heroesdb',
+//   adapter: 'websql',
+// });
+
+//-----------  Firebase  -----------//
 
 firebase.initializeApp({
   apiKey      : process.env.firebaseApiKey,
@@ -23,6 +31,4 @@ const RSF = new ReduxSagaFirebase(firebase)
 
 //-----------  Exports  -----------//
 
-export { firebase, firestore }
-
-export default RSF
+export { RSF, firebase, firestore }

@@ -6,6 +6,7 @@ import React                from 'react'
 import PropTypes            from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
+import Button               from 'components/Button'
 import FormField            from 'components/FormField'
 import FormSubmit           from 'components/FormSubmit'
 import { collection }       from 'models/groups/sagas'
@@ -23,7 +24,7 @@ const validate = ({ title, ...values }) => {
 
 //-----------  Component  -----------//
 
-const GroupForm = ({ handleSubmit, ...props }) => (
+const GroupForm = ({ hideModal, handleSubmit, ...props }) => (
   <Styled.GroupForm noValidate onSubmit={handleSubmit}>
     {props.formTitle && <h4>{props.formTitle}</h4>}
 
@@ -34,7 +35,10 @@ const GroupForm = ({ handleSubmit, ...props }) => (
       label='Title'
       component={FormField}
     />
-    <FormSubmit text={props.submitText || 'Submit'} {...props} />
+    <Styled.FormFooter>
+      <Button onClick={hideModal} bare>Cancel</Button>
+      <FormSubmit text={props.submitText || 'Submit'} {...props} />
+    </Styled.FormFooter>
   </Styled.GroupForm>
 )
 
@@ -42,6 +46,7 @@ const GroupForm = ({ handleSubmit, ...props }) => (
 //-----------  Type Definitions  -----------//
 
 GroupForm.propTypes = {
+  hideModal       : PropTypes.func.isRequired,
   onSubmit        : PropTypes.func,
   onSubmitSuccess : PropTypes.func,
 }

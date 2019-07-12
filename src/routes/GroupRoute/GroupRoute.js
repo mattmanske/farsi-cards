@@ -12,16 +12,22 @@ import MaterialIcon from 'components/MaterialIcon'
 
 class GroupRoute extends React.Component {
 
-  componentDidMount() {
-    const { id, requestWords } = this.props
+  state = {
+    group: null
+  }
 
-    requestWords(id)
+  componentDidMount() {
+    const { group, requestWords } = this.props
+
+    if (group)
+      this.props.requestWords(this.group)
   }
 
   //-----------  HTML Render  -----------//
 
   render(){
     const { words, group } = this.props
+
     return (
       <Elements.Page title={group.title}>
         <Elements.Section>
@@ -42,7 +48,6 @@ class GroupRoute extends React.Component {
 //-----------  Type Definitions  -----------//
 
 GroupRoute.propTypes = {
-  id           : PropTypes.string.isRequired,
   words        : PropTypes.array.isRequired,
   group        : PropTypes.object.isRequired,
   requestWords : PropTypes.func.isRequired

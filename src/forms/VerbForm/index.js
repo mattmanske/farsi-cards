@@ -7,6 +7,7 @@ import { formValueSelector }      from 'redux-form'
 
 import { formActions }            from 'models/verbs/actions'
 import { collection }             from 'models/verbs/sagas'
+import { modalActions }           from 'models/modal/actions'
 import { getConjugationDefaults } from 'utilities/verbs'
 
 import VerbForm                   from './VerbForm'
@@ -27,7 +28,8 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-  onSubmit: (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
+  hideModal : () => dispatch(modalActions.hideModal()),
+  onSubmit  : (...args) => (args[0].id) ? formActions.update(...args) : formActions.create(...args)
 })
 
 //-----------  Exports  -----------//

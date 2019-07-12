@@ -37,6 +37,14 @@ Styled.Conjugations = styled.div`
   }
 `
 
+Styled.FormFooter = styled.footer`
+  background : ${vars.grayLightest};
+  border-top : 1px solid ${vars.grayLighter};
+  margin     : 2em -2.25em -2.25em;
+  padding    : 1.25em 2.25em;
+  text-align : right;
+`
+
 //-----------  Exports  ----------- */
 
 export default Styled
