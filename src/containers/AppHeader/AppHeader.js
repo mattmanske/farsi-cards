@@ -17,19 +17,20 @@ import MobileIcon        from 'assets/images/mobile.svg'
 
 //-----------  Definitions  -----------//
 
-const isIndexPath = (props) => ('/' === get(props, 'location.pathname'))
+const inversePaths = ['/', '/review']
+const isInversePath = (props) => (inversePaths.includes(get(props, 'location.pathname')))
 
 //-----------  Component  -----------//
 
 class AppHeader extends React.Component {
 
   state = {
-    isIndex  : isIndexPath(this.props),
-    showMenu : false,
+    isInverse : isInversePath(this.props),
+    showMenu  : false,
   }
 
   static getDerivedStateFromProps(props){
-    return { isIndex: isIndexPath(props) }
+    return { isInverse: isInversePath(props) }
   }
 
   //-----------  Helpers  -----------//
@@ -51,18 +52,18 @@ class AppHeader extends React.Component {
   //-----------  HTML Render  -----------//
 
   render(){
-    const { isIndex, showMenu } = this.state
+    const { isInverse, showMenu } = this.state
 
     return (
       <Styled.AppHeader>
         <Bounds width='max'>
           <Styled.Logo>
             <Link to='/'>
-              <Logo inverted={isIndex} />
+              <Logo inverted={isInverse} />
             </Link>
           </Styled.Logo>
 
-          <Styled.Navigation inverted={isIndex}>
+          <Styled.Navigation inverted={isInverse}>
             {this.renderLinks()}
           </Styled.Navigation>
 
@@ -70,7 +71,7 @@ class AppHeader extends React.Component {
             <Styled.MobileNavigation visible={showMenu}>
               {this.renderLinks(true)}
             </Styled.MobileNavigation>
-            <Styled.MenuSwitch inverted={(isIndex && !showMenu)}>
+            <Styled.MenuSwitch inverted={(isInverse && !showMenu)}>
               <MobileIcon />
             </Styled.MenuSwitch>
           </Styled.MobileMenu>

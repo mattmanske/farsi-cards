@@ -21,6 +21,7 @@
     "babel-polyfill": "^6.26.0",
     "faker": "^4.1.0",
     "firebase": "^5.4.1",
+    "framer-motion": "^1.2.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "polished": "^1.9.3",

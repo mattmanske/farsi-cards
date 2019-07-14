@@ -1,9 +1,10 @@
 //-----------  Imports  -----------//
 
-import styled          from 'styled-components'
+import styled              from 'styled-components'
 
-import vars            from 'styles/variables'
-import { centerAlign } from 'styles/mixins'
+import vars                from 'styles/variables'
+import { centerAlign,
+         horizontalAlign } from 'styles/mixins'
 
 //-----------  Definitions  ----------- */
 
@@ -39,6 +40,7 @@ Styled.CardWrapper = styled.div`
   transform-style : preserve-3d;
   transition      : transform 0.33s;
   width           : 100%;
+  cursor          : pointer;
 `
 
 Styled.FrontSide = styled(Card)`
@@ -55,11 +57,18 @@ Styled.WordWrapper = styled.div`
   ${ centerAlign() }
 
   font-size      : 2.5rem;
-  letter-spacing : 0;
   text-align     : center;
+  letter-spacing : 0 !important;
+
+  > * {
+    letter-spacing: 0 !important;
+  }
 
   small {
-    font-size: 0.55em;
+    ${ horizontalAlign() }
+
+    font-size : 0.45em;
+    top       : 125%;
   }
 `
 
