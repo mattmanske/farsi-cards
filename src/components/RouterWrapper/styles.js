@@ -11,10 +11,13 @@ const Styled = {}
 //-----------  Router Wrapper  ----------- */
 
 Styled.RouterWrapper = styled.main`
-  flex     : 1 1 auto;
-  position : relative;
+  display        : flex;
+  flex           : 1 1 auto;
+  position       : relative;
+  flex-direction : column;
 
   > * {
+    flex     : 1 1 auto;
     position : relative;
     z-index  : 5;
   }

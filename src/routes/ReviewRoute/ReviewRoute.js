@@ -1,11 +1,12 @@
 //-----------  Imports  -----------//
 
-import Styled    from './styles'
+import Styled     from './styles'
 
-import React     from 'react'
-import PropTypes from 'prop-types'
+import React      from 'react'
+import PropTypes  from 'prop-types'
 
-import Elements  from 'components/PageElements'
+import Elements   from 'components/PageElements'
+import ReviewCard from 'components/ReviewCard'
 
 //-----------  Component  -----------//
 
@@ -17,14 +18,14 @@ class ReviewRoute extends React.Component {
     const { nextWord, currentWord, onCompletion } = this.props
 
     return (
-      <Elements.Page title='Review Route'>
-        <Styled.CardSection>
-          {nextWord &&
-            <ReviewCard word={nextWord} />
-          }
-          <ReviewCard word={currentWord} onCompletion={onCompletion} />
-        </Styled.CardSection>
-      </Elements.Page>
+      <Styled.ReviewRoute title='Review Route'>
+        <Styled.CardWrapper>
+            {/* {nextWord &&
+                <ReviewCard word={nextWord} />
+            } */}
+            <ReviewCard word={nextWord} onCompletion={onCompletion} />
+        </Styled.CardWrapper>
+      </Styled.ReviewRoute>
     )
   }
 }
@@ -33,7 +34,7 @@ class ReviewRoute extends React.Component {
 
 ReviewRoute.propTypes = {
   nextWord     : PropTypes.object,
-  currentWord  : PropTypes.object.isRequired,
+  currentWord  : PropTypes.object,
   onCompletion : PropTypes.func.isRequired,
 }
 
