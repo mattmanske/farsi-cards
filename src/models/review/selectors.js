@@ -17,6 +17,5 @@ export const nextWordSelector = createSelector([reverseWordsSelector, indexSelec
 });
 
 export const currentWordSelector = createSelector([reverseWordsSelector, indexSelector], (words, index) => {
-  console.log(words, index);
   return get(words, index);
 });

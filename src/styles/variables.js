@@ -8,9 +8,11 @@ export const emBase = 14
 export const gutter = 1.25
 
 export const colors = {
+  white        : '#ffffff',
+  black        : '#172032',
   yellow       : '#E9A845',
   red          : '#e60012',
-  geeen        : '#95CF49',
+  green        : '#95CF49',
   blue         : '#0092e2',
   blueDark     : '#4a90e2',
   blueLight    : '#d3efff',
@@ -33,9 +35,6 @@ export const colors = {
 //-----------  Style Variables  -----------//
 
 export default Object.assign({}, colors, {
-  white             : '#ffffff',
-  black             : '#172032',
-
   fontFamily        : '-apple-system, BlinkMacSystemFont, sans-serif',
   fontWeight        : 500,
   fontWeightBold    : 600,

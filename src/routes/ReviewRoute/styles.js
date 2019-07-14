@@ -22,10 +22,6 @@ const fillCSS = `
 
 Styled.ReviewRoute = styled(Elements.Page)`
   background-color: ${vars.blueDarker};
-
-  > * {
-    ${ fillCSS }
-  }
 `
 
 Styled.CardWrapper = styled.div`
@@ -50,6 +46,13 @@ Styled.CardWrapper = styled.div`
       transform : translate(-50%, -54%) scale(0.95);
       opacity   : 0.85;
     }
+  }
+
+  .progress-icon {
+    height     : 50vw;
+    max-height : 16rem;
+    max-width  : 16rem;
+    width      : 50vw;
   }
 `
 

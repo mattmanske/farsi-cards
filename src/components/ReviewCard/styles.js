@@ -76,6 +76,13 @@ Styled.Farsi = styled.span`
   font-size: 1.25em;
 `
 
+Styled.Status = styled.div`
+  ${ centerAlign() }
+
+  text-align : center;
+  z-index    : 10;
+`
+
 //-----------  Exports  ----------- */
 
 export default Styled

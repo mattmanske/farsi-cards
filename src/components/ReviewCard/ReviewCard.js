@@ -23,7 +23,7 @@ class ReviewCard extends React.Component {
   //-----------  HTML Render  -----------//
 
   render(){
-    const { word, className, onCompletion } = this.props
+    const { word, children, className, onCompletion } = this.props
     const { flipped, loading } = this.state
 
     const isFlipped = (loading && !word) || flipped;
@@ -31,19 +31,22 @@ class ReviewCard extends React.Component {
     return (
       <Styled.ReviewCard className={className}>
         <Styled.CardWrapper flipped={isFlipped} onClick={this.toggleFlipped} onTouchEnd={this.toggleFlipped}>
-            <Styled.FrontSide>
-                <Styled.WordWrapper>
-                    {word && word.english}
-                </Styled.WordWrapper>
-            </Styled.FrontSide>
-            <Styled.BackSide>
-                <Styled.WordWrapper>
-                    <Styled.Farsi>{word && word.farsi}</Styled.Farsi>
-                    <br />
-                    <small><em>({word && word.phonetic})</em></small>
-                </Styled.WordWrapper>
-            </Styled.BackSide>
+          <Styled.FrontSide>
+            <Styled.WordWrapper>
+              {word && word.english}
+            </Styled.WordWrapper>
+          </Styled.FrontSide>
+          <Styled.BackSide>
+            <Styled.WordWrapper>
+              <Styled.Farsi>{word && word.farsi}</Styled.Farsi>
+              <br />
+              <small><em>({word && word.phonetic})</em></small>
+            </Styled.WordWrapper>
+          </Styled.BackSide>
         </Styled.CardWrapper>
+        <Styled.Status>
+          {children}
+        </Styled.Status>
       </Styled.ReviewCard>
     )
   }
