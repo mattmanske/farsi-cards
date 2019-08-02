@@ -1,16 +1,17 @@
 //-----------  Imports  -----------//
 
-import { connect }                               from 'react-redux'
+import { connect }                                       from 'react-redux'
 
-import ReviewRoute                               from './ReviewRoute'
-import { reviewActions }                         from 'models/review/actions'
-import { nextWordSelector, currentWordSelector } from 'models/review/selectors'
+import ReviewRoute                                       from './ReviewRoute'
+import { reviewActions }                                 from 'models/review/actions'
+import { wordsSelector, indexSelector, resultsSortedSelector } from 'models/review/selectors'
 
 //-----------  Redux Maps  -----------//
 
 const mapState = (state) => ({
-    nextWord    : nextWordSelector(state),
-    currentWord : currentWordSelector(state),
+    index   : indexSelector(state),
+    words   : wordsSelector(state),
+    results : resultsSortedSelector(state),
 })
 
 const mapDispatch = (dispatch) => ({

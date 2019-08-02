@@ -47,13 +47,6 @@ Styled.CardWrapper = styled.div`
       opacity   : 0.85;
     }
   }
-
-  .progress-icon {
-    height     : 50vw;
-    max-height : 16rem;
-    max-width  : 16rem;
-    width      : 50vw;
-  }
 `
 
 //-----------  Exports  ----------- */

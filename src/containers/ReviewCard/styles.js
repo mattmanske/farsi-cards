@@ -24,12 +24,43 @@ const Card = styled.div`
 //-----------  Review Card  ----------- */
 
 Styled.ReviewCard = styled.div`
-  height      : 90%;
-  max-height  : 42rem;
-  max-width   : 24rem;
-  perspective : 150rem;
-  position    : relative;
-  width       : 90%;
+  height         : 90%;
+  margin-top     : ${p => `${Math.min(0, (p.order * 20))}px`};
+  max-height     : 42rem;
+  max-width      : 24rem;
+  perspective    : 150rem;
+  pointer-events : ${p => !p.order ? 'default' : 'none'};
+  position       : relative;
+  transform      : ${p => `translate(-50%,-50%) scale(${Math.min(1, 1 + (p.order / 20))})`} !important;
+  transition     : ${p => (p.order <= 0) ? 'all 0.33s ease-out' : 'none'};
+  width          : 90%;
+
+  > * {
+    bottom   : 0;
+    left     : 0;
+    position : absolute;
+    right    : 0;
+    top      : 0;
+
+
+    > * {
+        bottom      : 0;
+        left        : 0;
+        perspective : 100rem;
+        position    : absolute;
+        right       : 0;
+        top         : 0;
+
+        > span {
+            bottom      : 0;
+            left        : 0;
+            perspective : 100rem;
+            position    : absolute;
+            right       : 0;
+            top         : 0;
+        }
+    }
+  }
 `
 
 Styled.CardWrapper = styled.div`
@@ -81,6 +112,25 @@ Styled.Status = styled.div`
 
   text-align : center;
   z-index    : 10;
+
+    .progress-icon {
+        height     : 50vw;
+        max-height : 16rem;
+        max-width  : 16rem;
+        width      : 50vw;
+    }
+`
+
+Styled.Overlay = styled.div`
+    background-color : ${vars.blueDarker};
+    border-radius    : 0.5rem;
+    bottom           : -1px;
+    left             : -1px;
+    opacity          : ${p => Math.max(0, -(p.order / 4) - 0.2)};
+    pointer-events   : none;
+    position         : absolute;
+    right            : -1px;
+    top              : -1px;
 `
 
 //-----------  Exports  ----------- */

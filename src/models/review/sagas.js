@@ -20,6 +20,6 @@ export function* requestReviewSaga(){
 
 export default function* reviewSagas(){
   yield all([
-    takeEvery(REVIEW.REQUEST, requestReviewSaga)
+    takeEvery(REVIEW.REQUEST, requestReviewSaga),
   ])
 }
