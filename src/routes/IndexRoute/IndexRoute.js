@@ -6,8 +6,6 @@ import React       from 'react'
 import PropTypes   from 'prop-types'
 import { Link }    from 'react-router-dom'
 
-import vars        from 'styles/variables'
-
 import Button      from 'components/Button'
 import Elements    from 'components/PageElements'
 import { appDesc } from 'utilities/constants'

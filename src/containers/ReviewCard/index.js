@@ -11,8 +11,8 @@ import { reviewActions } from 'models/review/actions'
 const mapState = (state) => ({})
 
 const mapDispatch = (dispatch) => ({
-    onSuccess: () => dispatch(reviewActions.success()),
-    onFailure: () => dispatch(reviewActions.failure()),
+    onCorrect: () => dispatch(reviewActions.correct()),
+    onIncorrect: () => dispatch(reviewActions.incorrect()),
 })
 
 //-----------  Exports  -----------//

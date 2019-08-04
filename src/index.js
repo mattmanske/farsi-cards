@@ -38,6 +38,8 @@ export default (html, meta, assets, stylesheets) => {
 
         ${metaData || ''}
         <meta name="keywords" content="${keywords}">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
         ${stylesheets || ''}
         <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">

@@ -5,15 +5,17 @@ import { REVIEW } from './actions'
 //-----------  Definitions  -----------//
 
 export const initialState = {
-  words   : [],
-  index   : 0,
-  results : [],
+  words     : [],
+  index     : 0,
+  results   : [],
+  error     : null,
+  isLoading : false,
 }
 
 //-----------  Reducers  -----------//
 
 export default function reviewReducer(state = initialState, action){
-  const { data, error } = action
+  const { words, error } = action
   let results = []
 
   switch (action.type){
@@ -22,12 +24,18 @@ export default function reviewReducer(state = initialState, action){
       return { ...state, isLoading: true }
 
     case REVIEW.SUCCESS:
-      results = [1, ...state.results]
-      return { ...initialState, results, index: state.index + 1 }
+      return { ...initialState, words }
 
     case REVIEW.FAILURE:
-      results = [0, ...state.results]
-      return { ...initialState, results, index: state.index + 1 }
+      return { ...initialState, error }
+
+    case REVIEW.CORRECT:
+      results = [...state.results, true]
+      return { ...state, results, index: state.index + 1 }
+
+    case REVIEW.INCORRECT:
+      results = [...state.results, false]
+      return { ...state, results, index: state.index + 1 }
 
     default:
       return state

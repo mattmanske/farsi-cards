@@ -1,25 +1,45 @@
 //-----------  Imports  -----------//
 
-import { all, put, call, takeEvery } from 'redux-saga/effects'
+import { all, put, take, select, takeEvery } from 'redux-saga/effects'
 
-import { requestReview } from './api'
 import { REVIEW, sagaActions } from './actions'
+import { reviewSelector } from './selectors'
+import { loadedSelector, reverseWordsSelector } from 'models/words/selectors'
+import { WORDS } from 'models/words/actions'
 
 //-----------  Sagas  -----------//
 
-export function* requestReviewSaga(){
-  try {
-    const { data } = yield call(requestReview)
-    yield put(sagaActions.success(data))
-  } catch(error){
-    yield put(sagaActions.failure(error))
-  }
+export function* requestReviewSaga({ query }){
+    try {
+        const hasLoaded = yield select(loadedSelector)
+
+        if (!hasLoaded) {
+            yield take(WORDS.SUCCESS)
+        }
+
+        const words = yield select(reverseWordsSelector)
+
+        yield put(sagaActions.success([...words, ...words]))
+    } catch(error){
+        yield put(sagaActions.failure(error))
+    }
+}
+
+export function* checkReviewSaga(){
+//   try {
+//     const { words, results } = yield select(reviewSelector)
+
+//     yield put(sagaActions.success(data))
+//   } catch(error){
+//     yield put(sagaActions.failure(error))
+//   }
 }
 
 //-----------  Watchers  -----------//
 
 export default function* reviewSagas(){
-  yield all([
-    takeEvery(REVIEW.REQUEST, requestReviewSaga),
-  ])
+    yield all([
+        takeEvery(REVIEW.REQUEST, requestReviewSaga),
+        takeEvery([REVIEW.CORRECT, REVIEW.INCORRECT], checkReviewSaga),
+    ])
 }

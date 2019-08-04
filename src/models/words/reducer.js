@@ -8,6 +8,7 @@ export const initialState = {
   data      : [],
   error     : null,
   isLoading : false,
+  hasLoaded : false,
 }
 
 //-----------  Reducers  -----------//
@@ -21,7 +22,7 @@ export default function wordsReducer(state = initialState, action){
       return { ...state, isLoading: true }
 
     case WORDS.SUCCESS:
-      return { ...initialState, data }
+      return { ...initialState, data, hasLoaded: true }
 
     case WORDS.FAILURE:
       return { ...initialState, error }

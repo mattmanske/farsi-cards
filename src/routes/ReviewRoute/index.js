@@ -1,21 +1,19 @@
 //-----------  Imports  -----------//
 
-import { connect }                                       from 'react-redux'
+import { connect }        from 'react-redux'
 
-import ReviewRoute                                       from './ReviewRoute'
-import { reviewActions }                                 from 'models/review/actions'
-import { wordsSelector, indexSelector, resultsSortedSelector } from 'models/review/selectors'
+import ReviewRoute        from './ReviewRoute'
+import { reviewActions }  from 'models/review/actions'
+import { reviewSelector } from 'models/review/selectors'
 
 //-----------  Redux Maps  -----------//
 
-const mapState = (state) => ({
-    index   : indexSelector(state),
-    words   : wordsSelector(state),
-    results : resultsSortedSelector(state),
-})
+const mapState = (state) => {
+    return { ...reviewSelector(state) }
+}
 
 const mapDispatch = (dispatch) => ({
-    onCompletion: (wordID, success) => dispatch(reviewActions.onCompletion(wordID, success)),
+    requestReview: () => dispatch(reviewActions.request())
 })
 
 //-----------  Exports  -----------//

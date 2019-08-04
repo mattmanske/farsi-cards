@@ -16,24 +16,21 @@ import { colors }         from 'styles/variables'
 
 //-----------  Definitions  -----------//
 
-const maxBound = 100
-const minBound = -100
+const maxBound = 35
+const minBound = -35
 
-const xInput     = [minBound, 0, maxBound];
-const quickInput = [minBound / 2, 0, maxBound / 2];
+const xInput     = [minBound, 0, maxBound]
+const quickInput = [minBound / 2, 0, maxBound / 2]
+const longInput  = [minBound * 10, 0, maxBound * 10]
 
-const colorCSS           = [colors.red, colors.white, colors.green]
-const opacityCSS         = ['1', '0', '1']
-const transformOriginCSS = ['bottom 0%', 'bottom 50%', 'bottom 100%']
-const transformCSS       = [
-    'rotate(-25deg) scale(0.9) translateY(-20%)',
-    'rotate(0deg) scale(1) translateY(0%)',
-    'rotate(25deg) scale(0.9) translateY(-20%)'
-]
+const colorCSS        = [colors.red, colors.white, colors.green]
+const opacityCSS      = ['1', '0', '1']
+const transformCSS    = ['rotate(-25deg)', 'rotate(0deg)', 'rotate(25deg)']
+const dragConstraints = { top : 0, left : 0, right : 0, bottom : 0 }
 
 //-----------  Component  -----------//
 
-const ReviewCard = ({ word, order, result, onSuccess, onFailure }) => {
+const ReviewCard = ({ word, order, result, onCorrect, onIncorrect }) => {
 
     const [flipped, flipCard]         = useState(false)
     const [hasFlipped, setHasFlipped] = useState(false)
@@ -42,31 +39,32 @@ const ReviewCard = ({ word, order, result, onSuccess, onFailure }) => {
     const canDrag = (!order && hasFlipped)
 
     const init = useMotionValue(0)
-    const x = useSpring(init, { mass: 0.5, damping: 50 })
+    const x = useSpring(init, { mass: 0.1, damping: 50 })
 
     useEffect(() => {
         if (hasDecision) return
 
-        if (1 === result) {
+        console.log(result)
+
+        if (true === result) {
             x.stop()
-            x.set(800)
+            x.set(500)
             setDecision(true)
         }
 
-        if (0 === result) {
+        if (false === result) {
             x.stop()
-            x.set(-800)
+            x.set(-500)
             setDecision(true)
         }
     }, [result])
 
-    const color           = useTransform(x, quickInput, colorCSS)
-    const opacity         = useTransform(x, quickInput, opacityCSS)
-    const transform       = useTransform(x, xInput, transformCSS)
-    const transformOrigin = useTransform(x, xInput, transformOriginCSS)
-    const crossPathA      = useTransform(x, [-5, -35], [0, 1])
-    const crossPathB      = useTransform(x, [-30, -60], [0, 1])
-    const tickPath        = useTransform(x, [5, 50], [0, 1])
+    const color      = useTransform(x, quickInput, colorCSS)
+    const opacity    = useTransform(x, quickInput, opacityCSS)
+    const transform  = useTransform(x, longInput, transformCSS)
+    const crossPathA = useTransform(x, [-5, -22], [0, 1])
+    const crossPathB = useTransform(x, [-18, -35], [0, 1])
+    const tickPath   = useTransform(x, [5, 35], [0, 1])
 
     function handleFlip() {
         flipCard(!flipped)
@@ -74,14 +72,14 @@ const ReviewCard = ({ word, order, result, onSuccess, onFailure }) => {
     }
 
     function handleDragEnd(event, info) {
-        if (get(info, 'point.x') > maxBound / 2) return onSuccess()
-        if (get(info, 'point.x') < minBound / 2) return onFailure()
+        if (get(info, 'point.x') > maxBound / 2) return onCorrect()
+        if (get(info, 'point.x') < minBound / 2) return onIncorrect()
     }
 
     return (
         <Styled.ReviewCard className='card' order={order}>
-            <motion.div style={{ x }} drag={canDrag && 'x'} dragConstraints={{ left: 0, right: 0 }} onDragEnd={handleDragEnd}>
-                <motion.div style={{ transform, transformOrigin }} onTap={handleFlip}>
+            <motion.div style={{ x }} drag={canDrag} dragConstraints={dragConstraints} onDragEnd={handleDragEnd}>
+                <motion.div style={{ transform }} onTap={handleFlip}>
                     <Styled.CardWrapper flipped={flipped}>
                         <Styled.FrontSide>
                             <Styled.WordWrapper>
@@ -143,9 +141,11 @@ const ReviewCard = ({ word, order, result, onSuccess, onFailure }) => {
 //-----------  Type Definitions  -----------//
 
 ReviewCard.propTypes = {
-    word         : PropTypes.object,
-    order        : PropTypes.number,
-    onCompletion : PropTypes.func,
+    word        : PropTypes.object,
+    order       : PropTypes.number,
+    result      : PropTypes.bool,
+    onCorrect   : PropTypes.func,
+    onIncorrect : PropTypes.func,
 }
 
 //-----------  Export  -----------//

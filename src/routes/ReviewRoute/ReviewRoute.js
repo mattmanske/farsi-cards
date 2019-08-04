@@ -1,16 +1,21 @@
 //-----------  Imports  -----------//
 
-import Styled     from './styles'
+import Styled      from './styles'
 
-import React      from 'react'
-import PropTypes  from 'prop-types'
+import React       from 'react'
+import PropTypes   from 'prop-types'
 
-import Elements   from 'components/PageElements'
-import ReviewCard from 'containers/ReviewCard'
+import Elements    from 'components/PageElements'
+import ReviewCard  from 'containers/ReviewCard'
+import LoadingIcon from 'components/LoadingIcon'
 
 //-----------  Component  -----------//
 
 class ReviewRoute extends React.Component {
+
+    componentDidMount() {
+        this.props.requestReview()
+    }
 
     //-----------  Helpers  -----------//
 
@@ -27,13 +32,17 @@ class ReviewRoute extends React.Component {
     //-----------  HTML Render  -----------//
 
     render() {
-        const { index, words, onCompletion } = this.props
+        const { error, isLoading } = this.props
 
         return (
             <Styled.ReviewRoute title='Review Route'>
-                <Styled.CardWrapper>
-                    {this.renderList()}
-                </Styled.CardWrapper>
+                {isLoading ? (
+                    <LoadingIcon fill='white' />
+                ) : (
+                    <Styled.CardWrapper>
+                        {this.renderList()}
+                    </Styled.CardWrapper>
+                )}
             </Styled.ReviewRoute>
         )
     }
@@ -42,9 +51,12 @@ class ReviewRoute extends React.Component {
 //-----------  Type Definitions  -----------//
 
 ReviewRoute.propTypes = {
-    nextWord     : PropTypes.object,
-    currentWord  : PropTypes.object,
-    onCompletion : PropTypes.func.isRequired,
+    words         : PropTypes.array,
+    index         : PropTypes.number,
+    results       : PropTypes.array,
+    error         : PropTypes.any,
+    isLoading     : PropTypes.bool,
+    requestReview : PropTypes.func,
 }
 
 //-----------  Export  -----------//

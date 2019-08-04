@@ -22,6 +22,10 @@ const fillCSS = `
 
 Styled.ReviewRoute = styled(Elements.Page)`
   background-color: ${vars.blueDarker};
+
+  > svg {
+      ${ centerAlign() }
+  }
 `
 
 Styled.CardWrapper = styled.div`
