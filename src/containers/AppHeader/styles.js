@@ -23,29 +23,12 @@ Styled.AppHeader = styled.header`
     display         : flex;
     flex-direction  : row;
     justify-content : space-between;
-    padding-bottom  : 2rem;
     padding-top     : 2rem;
-  }
-`
-
-Styled.Logo = styled.div`
-  position   : relative;
-  margin-top : -5px;
-
-  h1 {
-    margin-top: -1px;
 
     @media (max-width: 450px){
-      font-size  : 1.25rem;
-      margin-top : 5px;
-    }
-
-    @media (max-width: 350px){
-      font-size  : 1.1rem;
-      margin-top : 5px;
+      padding: 0.9rem 1.25rem;
     }
   }
-
 `
 
 Styled.Navigation = styled.nav`

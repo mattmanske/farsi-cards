@@ -57,11 +57,9 @@ class AppHeader extends React.Component {
     return (
       <Styled.AppHeader>
         <Bounds width='max'>
-          <Styled.Logo>
-            <Link to='/'>
-              <Logo inverted={isInverse} />
-            </Link>
-          </Styled.Logo>
+          <Link to='/'>
+            <Logo inverted={isInverse} />
+          </Link>
 
           <Styled.Navigation inverted={isInverse}>
             {this.renderLinks()}

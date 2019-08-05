@@ -26,15 +26,15 @@ const Card = styled.div`
 Styled.ReviewCard = styled.div`
   ${ centerAlign() }
 
-  height         : 135vw;
-  margin-top     : ${p => `${Math.min(0, (p.order * 20))}px`};
+  height         : calc(150vw - 4rem);
+  margin-top     : ${p => `${Math.min(0, (p.order * 17))}px`};
   max-width      : 24rem;
   max-height     : 36rem;
   perspective    : 150rem;
   pointer-events : ${p => !p.order ? 'default' : 'none'};
   transform      : ${p => `translate(-50%,-50%) scale(${Math.min(1, 1 + (p.order / 18))})`} !important;
   transition     : ${p => (p.order <= 0) ? 'all 0.33s ease-out' : 'none'};
-  width          : 90vw;
+  width          : calc(100vw - 4rem);
 
   > * {
     bottom   : 0;
@@ -42,7 +42,6 @@ Styled.ReviewCard = styled.div`
     position : absolute;
     right    : 0;
     top      : 0;
-
 
     > * {
         bottom      : 0;
@@ -89,8 +88,9 @@ Styled.WordWrapper = styled.div`
   ${ centerAlign() }
 
   font-size      : 2.5rem;
-  text-align     : center;
   letter-spacing : 0 !important;
+  text-align     : center;
+  width          : calc(100% - 2rem);
 
   > * {
     letter-spacing: 0 !important;
@@ -101,6 +101,10 @@ Styled.WordWrapper = styled.div`
 
     font-size : 0.45em;
     top       : 125%;
+  }
+
+  @media (max-width: 450px){
+    font-size: 2.25rem;
   }
 `
 

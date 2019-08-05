@@ -27,10 +27,11 @@ injectGlobal`
   }
 
   html, body {
-    -webkit-overflow-scrolling : touch;
+    -webkit-overflow-scrolling : none;
     background-color           : white;
     min-height                 : 100%;
-    overflow-x                 : scroll;
+    overflow-x                 : hidden;
+    position                   : relative;
     width                      : 100%;
   }
 

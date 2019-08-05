@@ -16,8 +16,8 @@ import { colors }         from 'styles/variables'
 
 //-----------  Definitions  -----------//
 
-const maxBound = 35
-const minBound = -35
+const maxBound = 30
+const minBound = -30
 
 const xInput     = [minBound, 0, maxBound]
 const quickInput = [minBound / 2, 0, maxBound / 2]
@@ -39,7 +39,7 @@ const ReviewCard = ({ word, order, result, onCorrect, onIncorrect }) => {
     const canDrag = (!order && hasFlipped)
 
     const init = useMotionValue(0)
-    const x = useSpring(init, { mass: 0.1, damping: 50 })
+    const x = useSpring(init, { mass: 0.01, damping: 50 })
 
     useEffect(() => {
         if (hasDecision) return

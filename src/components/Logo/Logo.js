@@ -11,7 +11,7 @@ const Logo = ({ inverted, ...props }) => {
 
   return (
     <Styled.Logo inverted={inverted}>
-      <h1>Farsi Cards</h1>
+      Farsi Cards
     </Styled.Logo>
   )
 }
