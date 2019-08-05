@@ -31,6 +31,7 @@ Styled.ReviewCard = styled.div`
   max-width      : 24rem;
   max-height     : 36rem;
   perspective    : 150rem;
+  visibility     : ${p => (-4 > p.order) ? 'hidden' : 'visible'};
   pointer-events : ${p => !p.order ? 'default' : 'none'};
   transform      : ${p => `translate(-50%,-50%) scale(${Math.min(1, 1 + (p.order / 18))})`} !important;
   transition     : ${p => (p.order <= 0) ? 'all 0.33s ease-out' : 'none'};
@@ -99,7 +100,7 @@ Styled.WordWrapper = styled.div`
   small {
     ${ horizontalAlign() }
 
-    font-size : 0.45em;
+    font-size : 0.5em;
     top       : 125%;
   }
 

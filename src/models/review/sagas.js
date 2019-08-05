@@ -1,6 +1,7 @@
 //-----------  Imports  -----------//
 
 import { all, put, take, select, takeEvery } from 'redux-saga/effects'
+import { shuffle } from 'lodash'
 
 import { REVIEW, sagaActions } from './actions'
 import { reviewSelector } from './selectors'
@@ -19,7 +20,7 @@ export function* requestReviewSaga({ query }){
 
         const words = yield select(reverseWordsSelector)
 
-        yield put(sagaActions.success([...words, ...words]))
+        yield put(sagaActions.success(shuffle(words).slice(0, 10)))
     } catch(error){
         yield put(sagaActions.failure(error))
     }

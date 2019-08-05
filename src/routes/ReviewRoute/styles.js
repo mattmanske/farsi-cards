@@ -46,6 +46,27 @@ Styled.Results = styled.div`
     }
 `
 
+Styled.ProgressWrapper = styled.div`
+    background    : rgba(255, 255, 255, 0.33);
+    border-radius : 0.25rem;
+    bottom        : 1rem;
+    height        : 0.25rem;
+    left          : 1rem;
+    overflow      : hidden;
+    position      : absolute;
+    right         : 1rem;
+`
+
+Styled.ProgressBar = styled.div`
+    background    : rgba(255, 255, 255, 0.67);
+    border-radius : 0.25rem;
+    height        : 0.25rem;
+    left          : 0;
+    position      : absolute;
+    transform     : width 1s ease-in;
+    width         : ${p => p.width || 0}%;
+`
+
 //-----------  Exports  ----------- */
 
 export default Styled

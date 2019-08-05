@@ -33,10 +33,11 @@ class ReviewRoute extends React.Component {
     //-----------  HTML Render  -----------//
 
     render() {
-        const { results, isLoading } = this.props
+        const { words, results, isLoading } = this.props
 
-        const correct = results.filter(Boolean)
-        const percentage = !!results.length ? (correct.length / results.length) * 100 : 0
+        const correct         = results.filter(Boolean)
+        const percentCorrect  = !!results.length ? (correct.length / results.length) * 100 : 0
+        const percentFinished = !!words.length ? (results.length / words.length) * 100 : 0
 
         return (
             <Styled.ReviewRoute title='Review Route'>
@@ -45,13 +46,17 @@ class ReviewRoute extends React.Component {
                 ) : (
                     <Styled.CardWrapper>
                         <Styled.Results>
-                            <h1>{Math.round(percentage)}%</h1>
+                            <h1>{Math.round(percentCorrect)}%</h1>
                             <h6>Correct</h6>
                             <Button to="/">Done</Button>
                         </Styled.Results>
                         {this.renderList()}
                     </Styled.CardWrapper>
                 )}
+
+                <Styled.ProgressWrapper>
+                    <Styled.ProgressBar width={Math.round(percentFinished)} />
+                </Styled.ProgressWrapper>
             </Styled.ReviewRoute>
         )
     }
