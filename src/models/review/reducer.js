@@ -21,7 +21,7 @@ export default function reviewReducer(state = initialState, action){
   switch (action.type){
 
     case REVIEW.REQUEST:
-      return { ...state, isLoading: true }
+      return { ...initialState, isLoading: true }
 
     case REVIEW.SUCCESS:
       return { ...initialState, words }

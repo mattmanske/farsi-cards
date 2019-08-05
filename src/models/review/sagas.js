@@ -26,13 +26,13 @@ export function* requestReviewSaga({ query }){
 }
 
 export function* checkReviewSaga(){
-//   try {
-//     const { words, results } = yield select(reviewSelector)
+    try {
+        const { words, results } = yield select(reviewSelector)
 
-//     yield put(sagaActions.success(data))
-//   } catch(error){
-//     yield put(sagaActions.failure(error))
-//   }
+        if (words.length === results.length){
+            console.log('DONE')
+        }
+    } catch(error){}
 }
 
 //-----------  Watchers  -----------//

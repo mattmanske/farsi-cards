@@ -31,7 +31,7 @@ class AppWrapper extends React.Component {
           <AppRoutes />
         </RouterWrapper>
 
-        <AppFooter />
+        {/* <AppFooter /> */}
 
         <LoadingBar />
 

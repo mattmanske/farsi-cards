@@ -32,25 +32,18 @@ Styled.CardWrapper = styled.div`
   ${ fillCSS }
 
   margin: 5rem 1rem 2rem;
+`
 
-  > *:not(.card) {
-    ${ fillCSS }
-
-    perspective: 150rem;
-
-    > * {
-      ${ fillCSS }
-    }
-  }
-
-  .card {
+Styled.Results = styled.div`
     ${ centerAlign() }
 
-    &.background {
-      transform : translate(-50%, -54%) scale(0.95);
-      opacity   : 0.85;
+    color          : ${vars.white};
+    text-align     : center;
+    text-transform : uppercase;
+
+    a {
+        margin-top: 1rem;
     }
-  }
 `
 
 //-----------  Exports  ----------- */

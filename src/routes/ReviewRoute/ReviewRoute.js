@@ -5,6 +5,7 @@ import Styled      from './styles'
 import React       from 'react'
 import PropTypes   from 'prop-types'
 
+import Button      from 'components/Button'
 import Elements    from 'components/PageElements'
 import ReviewCard  from 'containers/ReviewCard'
 import LoadingIcon from 'components/LoadingIcon'
@@ -32,7 +33,10 @@ class ReviewRoute extends React.Component {
     //-----------  HTML Render  -----------//
 
     render() {
-        const { error, isLoading } = this.props
+        const { results, isLoading } = this.props
+
+        const correct = results.filter(Boolean)
+        const percentage = !!results.length ? (correct.length / results.length) * 100 : 0
 
         return (
             <Styled.ReviewRoute title='Review Route'>
@@ -40,6 +44,11 @@ class ReviewRoute extends React.Component {
                     <LoadingIcon fill='white' />
                 ) : (
                     <Styled.CardWrapper>
+                        <Styled.Results>
+                            <h1>{Math.round(percentage)}%</h1>
+                            <h6>Correct</h6>
+                            <Button to="/">Done</Button>
+                        </Styled.Results>
                         {this.renderList()}
                     </Styled.CardWrapper>
                 )}

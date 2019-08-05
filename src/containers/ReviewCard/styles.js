@@ -24,16 +24,17 @@ const Card = styled.div`
 //-----------  Review Card  ----------- */
 
 Styled.ReviewCard = styled.div`
-  height         : 90%;
+  ${ centerAlign() }
+
+  height         : 135vw;
   margin-top     : ${p => `${Math.min(0, (p.order * 20))}px`};
-  max-height     : 42rem;
   max-width      : 24rem;
+  max-height     : 36rem;
   perspective    : 150rem;
   pointer-events : ${p => !p.order ? 'default' : 'none'};
-  position       : relative;
-  transform      : ${p => `translate(-50%,-50%) scale(${Math.min(1, 1 + (p.order / 20))})`} !important;
+  transform      : ${p => `translate(-50%,-50%) scale(${Math.min(1, 1 + (p.order / 18))})`} !important;
   transition     : ${p => (p.order <= 0) ? 'all 0.33s ease-out' : 'none'};
-  width          : 90%;
+  width          : 90vw;
 
   > * {
     bottom   : 0;
@@ -110,8 +111,9 @@ Styled.Farsi = styled.span`
 Styled.Status = styled.div`
   ${ centerAlign() }
 
-  text-align : center;
-  z-index    : 10;
+  pointer-events : none;
+  text-align     : center;
+  z-index        : 10;
 
     .progress-icon {
         height     : 50vw;

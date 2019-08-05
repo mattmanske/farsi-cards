@@ -1,9 +1,10 @@
 //-----------  Imports  -----------//
 
-import styled   from 'styled-components'
+import styled          from 'styled-components'
 
-import vars     from 'styles/variables'
-import Elements from 'components/PageElements'
+import vars            from 'styles/variables'
+import Elements        from 'components/PageElements'
+import { centerAlign } from 'styles/mixins'
 
 //-----------  Definitions  ----------- */
 
@@ -16,10 +17,12 @@ Styled.IndexRoute = styled.div``
 Styled.HeroSection = styled(Elements.Section)`
   background-color    : ${vars.blueDarker};
   background-position : center 18%;
+  min-height          : 100vh;
 
   > div.bounds {
-    padding-bottom : 11rem;
-    padding-top    : 8rem;
+      ${ centerAlign() }
+
+      text-align: center;
 
     h2 {
       color          : ${vars.white};
@@ -27,6 +30,9 @@ Styled.HeroSection = styled(Elements.Section)`
       font-weight    : ${vars.fontWeightLighter};
       letter-spacing : 0.05rem;
       line-height    : 100%;
+      line-height    : 133%;
+      margin         : 0 auto 1.5rem;
+      max-width      : 28rem;
       text-shadow    : 1px 3px 9px rgba(0,0,0,0.67);
       text-transform : uppercase;
 

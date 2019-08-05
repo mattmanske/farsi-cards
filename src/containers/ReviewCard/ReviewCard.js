@@ -44,8 +44,6 @@ const ReviewCard = ({ word, order, result, onCorrect, onIncorrect }) => {
     useEffect(() => {
         if (hasDecision) return
 
-        console.log(result)
-
         if (true === result) {
             x.stop()
             x.set(500)
@@ -56,6 +54,13 @@ const ReviewCard = ({ word, order, result, onCorrect, onIncorrect }) => {
             x.stop()
             x.set(-500)
             setDecision(true)
+        }
+
+        return () => {
+            flipCard(false)
+            setHasFlipped(false)
+            setDecision(false)
+            x.set(0)
         }
     }, [result])
 
@@ -77,7 +82,7 @@ const ReviewCard = ({ word, order, result, onCorrect, onIncorrect }) => {
     }
 
     return (
-        <Styled.ReviewCard className='card' order={order}>
+        <Styled.ReviewCard order={order}>
             <motion.div style={{ x }} drag={canDrag} dragConstraints={dragConstraints} onDragEnd={handleDragEnd}>
                 <motion.div style={{ transform }} onTap={handleFlip}>
                     <Styled.CardWrapper flipped={flipped}>
